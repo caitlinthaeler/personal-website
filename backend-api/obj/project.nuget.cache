@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Vml8g4RQSUE=",
+  "success": true,
+  "projectFilePath": "/Users/caitlin/Documents/GitHub/personal-website/backend-api/backend-api.csproj",
+  "expectedPackageFiles": [
+    "/Users/caitlin/.nuget/packages/microsoft.aspnetcore.openapi/9.0.0/microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "/Users/caitlin/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
