@@ -1,18 +1,44 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowFrontend", builder =>
+            builder.WithOrigins("http://localhost:3000")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
+});
+
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+app.UseSpaStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSpa(spa => {
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
+    });
+}
+else
+{
+    app.UseSpa( spa => {
+        spa.Options.SourcePath = Path.Combine(Directory.GetCurrentDirectory(), "vue-website/dist");
+    });
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
+
+
 
 var summaries = new[]
 {
@@ -39,3 +65,5 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+
