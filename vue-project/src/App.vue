@@ -1,6 +1,7 @@
 <script setup>
 import Navbar from '@/components/Navbar.vue'
 import Hero from '@/components/Hero.vue'
+import HomeCards from '@/components/HomeCards.vue'
 
 </script>
 
@@ -8,5 +9,6 @@ import Hero from '@/components/Hero.vue'
   <div class="font-handwriting text-2xl">
     <Navbar />
     <Hero/>
+    <HomeCards />
   </div>
 </template>
