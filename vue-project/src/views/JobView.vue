@@ -35,10 +35,10 @@ onMounted(async () => {
                     <main>
                         <div class="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
                             <div class="text-gray-500 mb-4">{{ state.job.type }}</div>
-                            <h1 class="text-3xl font-bold mb-4">>{{ state.job.title }}</h1>
+                            <h1 class="text-3xl font-bold mb-4">{{ state.job.title }}</h1>
                             <div class="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
-                                <i class="fa-solid fa-location-dot text-lg text-orange-700 mr-2"></i>
-                                <p class="text-orange-700">>{{ state.job.location }}</p>
+                                <i class="pi pi-map-marker text-xl text-orange-700 mr-2"></i>
+                                <p class="text-orange-700">{{ state.job.location }}</p>
                             </div>
                         </div>
 
@@ -48,12 +48,12 @@ onMounted(async () => {
                             </h3>
 
                             <p class="mb-4">
-                                >{{ state.job.description }}
+                                {{ state.job.description }}
                             </p>
 
                             <h3 class="text-green-800 text-lg font-bold mb-2">Salary</h3>
 
-                            <p class="mb-4">>{{ state.job.salary }} / Year</p>
+                            <p class="mb-4">{{ state.job.salary }} / Year</p>
                         </div>
                     </main>
 
