@@ -83,34 +83,6 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
-      "id": "28c8",
-      "title": "job listing",
-      "type": "Part-Time",
-      "location": "on the beach",
-      "description": "",
-      "salary": "$100K - $125K",
-      "company": {
-        "name": "fraud",
-        "description": "make money to give to u",
-        "contactEmail": "recruiter@gmail.com",
-        "contactPhone": "777777777"
-      }
-    },
-    {
-      "id": "e511",
-      "title": "Vue Intern",
-      "type": "Internship",
-      "location": "NY, USA",
-      "description": "",
-      "salary": "$150K - $175K",
-      "company": {
-        "name": "Vue",
-        "description": "We strive to promote a healthy work life balance for all employees, as we want everyone to always put out their best work.",
-        "contactEmail": "vue-internship@gmail.com",
-        "contactPhone": "000-000-000"
-      }
     }
   ]
 }
