@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "axios": "^1.7.9",
-    "vue-spinner": "^1.0.4"
+    "vue-spinner": "^1.0.4",
+    "vue-toastification": "^2.0.0-rc.5"
   }
 }
