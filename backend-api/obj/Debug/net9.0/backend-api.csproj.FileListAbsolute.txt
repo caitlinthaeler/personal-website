@@ -32,3 +32,10 @@
 /Users/caitlin/Documents/GitHub/personal-website/backend-api/obj/Debug/net9.0/backend-api.pdb
 /Users/caitlin/Documents/GitHub/personal-website/backend-api/obj/Debug/net9.0/backend-api.genruntimeconfig.cache
 /Users/caitlin/Documents/GitHub/personal-website/backend-api/obj/Debug/net9.0/ref/backend-api.dll
+/Users/caitlin/Documents/GitHub/personal-website/backend-api/bin/Debug/net9.0/DnsClient.dll
+/Users/caitlin/Documents/GitHub/personal-website/backend-api/bin/Debug/net9.0/Microsoft.AspNetCore.SpaServices.Extensions.dll
+/Users/caitlin/Documents/GitHub/personal-website/backend-api/bin/Debug/net9.0/MongoDB.Bson.dll
+/Users/caitlin/Documents/GitHub/personal-website/backend-api/bin/Debug/net9.0/MongoDB.Driver.dll
+/Users/caitlin/Documents/GitHub/personal-website/backend-api/bin/Debug/net9.0/SharpCompress.dll
+/Users/caitlin/Documents/GitHub/personal-website/backend-api/bin/Debug/net9.0/Snappier.dll
+/Users/caitlin/Documents/GitHub/personal-website/backend-api/bin/Debug/net9.0/ZstdSharp.dll

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "2IBl1HmOP4pxpt7KJNW1UbkkeUfZZJ23Hfz9NXZbGxU=",
+  "Source": "data-api",
+  "BasePath": "_content/data-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

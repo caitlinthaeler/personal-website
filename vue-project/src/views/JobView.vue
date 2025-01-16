@@ -99,7 +99,7 @@ onMounted(async () => {
 
                             <p class="my-2 bg-green-100 p-2 font-bold">{{ state.job.company.contactPhone }}</p>
                         </div>
-
+                        
                         <!-- Manage -->
                         <div class="bg-white p-6 rounded-lg shadow-md mt-6">
                             <h3 class="text-xl font-bold mb-6">Manage Job</h3>

@@ -2,7 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowFrontend", builder =>
-            builder.WithOrigins("http://localhost:3000")
+            builder.WithOrigins("http://localhost:3dotnet000")
                    .AllowAnyMethod()
                    .AllowAnyHeader());
 });
@@ -13,6 +13,7 @@ builder.Services.AddCors(options => {
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
+builder.Services.AddSpaStaticFiles();
 
 var app = builder.Build();
 app.UseSpaStaticFiles();
