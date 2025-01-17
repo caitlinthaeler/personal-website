@@ -10,18 +10,21 @@ public class Project
     public string? Id { get; set;}
 
     [BsonElement("Name")]
-    public string ProjectName { get; set;} = null!;
+    public string Title { get; set;} = null!;
 
     [BsonElement("Description")]
-    public string ProjectDescription { get; set; } = null!;
+    public string Description { get; set; } = null!;
 
     [BsonElement("StartDate")]
     [BsonRepresentation(BsonType.DateTime)]
-    public DateTime? ProjectStartDate { get; set; } = null;
+    public DateTime? StartDate { get; set; } = null;
 
     [BsonElement("EndDate")]
     [BsonRepresentation(BsonType.DateTime)]
-    public DateTime? ProjectEndDate { get; set; } = null;
+    public DateTime? EndDate { get; set; } = null;
+
+    public List<string> Skills { get; set; } = null!;
+    public List<Media> Media { get; set; } = null!;
 
     /*
     data:
