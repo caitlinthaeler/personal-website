@@ -1,10 +1,13 @@
 using data_api.Services;
-
+using data_api.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<WeatherService>();
+builder.Services.AddSingleton<TestService>();
 builder.Services.AddControllers();
+
+//builder.Services.AddScoped<IDataService<Project>, MongoDBService<Project>>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

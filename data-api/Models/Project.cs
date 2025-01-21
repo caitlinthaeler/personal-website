@@ -5,23 +5,24 @@ namespace data_api.Models;
 
 public class Project
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set;}
+    //[BsonId]
+    //[BsonRepresentation(BsonType.ObjectId)]
+    //public string? Id { get; set;}
+    public string Id { get; set; } = null!;
 
-    [BsonElement("Name")]
+    //[BsonElement("Name")]
     public string Title { get; set;} = null!;
 
-    [BsonElement("Description")]
+    //[BsonElement("Description")]
     public string Description { get; set; } = null!;
 
-    [BsonElement("StartDate")]
-    [BsonRepresentation(BsonType.DateTime)]
-    public DateTime? StartDate { get; set; } = null;
+    //[BsonElement("StartDate")]
+    //[BsonRepresentation(BsonType.DateTime)]
+    public DateOnly? StartDate { get; set; } = null;
 
-    [BsonElement("EndDate")]
-    [BsonRepresentation(BsonType.DateTime)]
-    public DateTime? EndDate { get; set; } = null;
+    //[BsonElement("EndDate")]
+    //[BsonRepresentation(BsonType.DateTime)]
+    public DateOnly? EndDate { get; set; } = null;
 
     public List<string> Skills { get; set; } = null!;
     public List<Media> Media { get; set; } = null!;

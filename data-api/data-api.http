@@ -1,6 +1,10 @@
 @data_api_HostAddress = http://localhost:5283
 
-GET {{data_api_HostAddress}}/weatherforecast/
+//GET {{data_api_HostAddress}}/weatherforecast/
+
+//POST {{data_api_HostAddress}}/api/project/test-create-project
+
+GET {{data_api_HostAddress}}/test-create-project/
 Accept: application/json
 
 ###
