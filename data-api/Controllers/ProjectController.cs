@@ -43,6 +43,11 @@ public class ProjectController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(string id, [FromBody] Project project)
     {
+        var existingData = await _service.GetDataByIdAsync(id);
+        if (existingData == null)
+        {
+            return NotFound();
+        }
         await _service.UpdateDataAsync(id, project);
         return NoContent(); // returns status 204 ('no content')
     }
@@ -50,6 +55,11 @@ public class ProjectController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id)
     {
+        var existingData = await _service.GetDataByIdAsync(id);
+        if (existingData == null)
+        {
+            return NotFound();
+        }
         await _service.DeleteDataAsync(id);
         return NoContent();
     }
