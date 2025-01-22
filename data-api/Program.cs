@@ -1,10 +1,42 @@
 using data_api.Services;
 using data_api.Models;
-var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
+var AllowedOrigins = builder.Configuration.GetSection("AllowedCorsOrigins").Get<string[]>();
+var AllowOriginsPolicyName = "AllowOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        AllowOriginsPolicyName, 
+        policy =>
+        {
+            policy.WithOrigins(AllowedOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        }
+    );
+});
 // Add services to the container.
-builder.Services.AddSingleton<WeatherService>();
-builder.Services.AddSingleton<TestService>();
+//builder.Services.AddSingleton<WeatherService>();
+//builder.Services.AddSingleton<TestService>();
+
+var connectionString = builder.Configuration[$"MongoDB:ConnectionString"];
+var databaseName = builder.Configuration["MongoDB:DatabaseName"];
+var mongoConfig = builder.Configuration.GetSection("MongoDB:Collections");
+var collections = mongoConfig.Get<List<Dictionary<string, string>>>();
+// Register MongoDB service for each collection dynamically
+foreach (var collection in collections)
+{
+    var collectionName = collection["collectionName"];
+    var modelType = collection["modelType"];
+    
+    builder.Services.AddSingleton(
+        typeof(MongoDBService<>).MakeGenericType(Type.GetType($"data_api.Models.{modelType}") ?? throw new InvalidOperationException($"Model not found: {modelType}")),
+        sp => new MongoDBService<object>(connectionString, databaseName, collectionName)
+    );
+}
+
+
 builder.Services.AddControllers();
 
 //builder.Services.AddScoped<IDataService<Project>, MongoDBService<Project>>();
@@ -20,6 +52,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(AllowOriginsPolicyName);
 
 app.UseAuthorization();
 
