@@ -5,7 +5,8 @@ using data_api.Models;
 namespace data_api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+//[Route("api/[controller]")]
+[Route("api/projects-collection")]
 public class ProjectController : ControllerBase
 {
     private readonly IDataService<Project> _service;

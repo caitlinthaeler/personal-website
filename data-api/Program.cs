@@ -28,11 +28,26 @@ var collections = mongoConfig.Get<List<Dictionary<string, string>>>();
 foreach (var collection in collections)
 {
     var collectionName = collection["collectionName"];
-    var modelType = collection["modelType"];
+    var modelType = Type.GetType($"data_api.Models.{collection["modelType"]}");
+    if (modelType == null)
+    {
+        throw new InvalidOperationException($"Model type '{modelType}' not found.");
+    }
     
     builder.Services.AddSingleton(
-        typeof(MongoDBService<>).MakeGenericType(Type.GetType($"data_api.Models.{modelType}") ?? throw new InvalidOperationException($"Model not found: {modelType}")),
-        sp => new MongoDBService<object>(connectionString, databaseName, collectionName)
+        typeof(IDataService<>).MakeGenericType(modelType),
+        sp =>
+        {
+            // Create an instance of MongoDBService<T> for the modelType
+            var serviceType = typeof(MongoDBService<>).MakeGenericType(modelType);
+            return ActivatorUtilities.CreateInstance(
+                sp,
+                serviceType,
+                connectionString,
+                databaseName,
+                collectionName
+            );
+        } 
     );
 }
 
