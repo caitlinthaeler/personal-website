@@ -15,13 +15,13 @@ public class FileController : ControllerBase
         _gitHubService = gitHubService;
     }
 
-    [HttpGet("{repo}/{branch}/{*filePath}")]
-    public async Task<IActionResult> GetFile(string repo, string branch, string filePath)
+    [HttpGet("{owner}/{repo}/{*filePath}")]
+    public async Task<IActionResult> GetFile(string owner, string repo, string filePath)
     {
         try
         {
-            (Stream content, string contentType) = await _gitHubService.GetFileAsync(repo, branch, filePath);
-            return File(content, contentType);
+            var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
+            return Ok(new  { content });
         }
         catch (Exception ex)
         {
