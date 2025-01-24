@@ -2,12 +2,13 @@
 import Hero from '@/components/Hero.vue'
 import HomeCards from '@/components/HomeCards.vue'
 import JobListings from '@/components/JobListings.vue'
+import ProjectList from '@/components/ProjectList.vue'
 </script>
 
 <template>
     <div>
         <Hero/>
         <HomeCards />
-        <JobListings :limit="3" :showButton="true"/>
+        <ProjectList :limit="3" :showButton="true"/>
     </div>
 </template>

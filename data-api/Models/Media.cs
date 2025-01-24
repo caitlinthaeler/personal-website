@@ -1,7 +1,12 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 namespace data_api.Models;
 public class Media
 {
-    public string Id { get; set; } = null!;
+    [BsonElement("mediaId")]
+    public string MediaId { get; set; } = null!;
+    
+    [BsonElement("type")]
     public string Type { get; set; } = null!; //image, video, game, icon etc
     public string Url { get; set; } = null!;
     public string DisplayText { get; set; } = null!;

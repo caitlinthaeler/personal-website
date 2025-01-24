@@ -12,21 +12,21 @@ public class TestDataService<T> : IDataService<T> where T : class
             Title = "Rogue Cat",
             Description = "An immersive Warriors inspired game combining 3d and 3d graphics for stunning visuals. Simulate the daily life of a Clan cat and get to know your fellow clan members and their life stories",
             Skills = { "C#", "MongoDB", "REST API" },
-            Media =
-            {
-                new Media 
-                {
-                    Type = "image", 
-                    Url = "https://c-sharp.com",
-                    Metadata = new Dictionary<string, string>()
-                    {
-                        {"skill", "C#"}
-                    },
-                },
-            },
+            // Media =
+            // {
+            //     new Media 
+            //     {
+            //         Type = "image", 
+            //         Url = "https://c-sharp.com",
+            //         Metadata = new Dictionary<string, string>()
+            //         {
+            //             {"skill", "C#"}
+            //         },
+            //     },
+            // },
 
-            StartDate = new DateOnly(2019, 1, 1),
-            EndDate = new DateOnly(2021, 1, 1)
+            StartDate = new DateTime(2019, 1, 1),
+            EndDate = new DateTime(2021, 1, 1)
         };
 
     public Task<List<T>> GetAllDataAsync()

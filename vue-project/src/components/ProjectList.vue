@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import JobListing from '@/components/JobListing.vue'
+import ProjectListing from '@/components/ProjectListing.vue'
 import { reactive, ref, defineProps, onMounted } from 'vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import axios from 'axios'
@@ -21,8 +21,9 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await axios.get('/api/projects');
+        const response = await axios.get('http://localhost:5283/api/projects-collection/');
         state.projects = response.data;
+        console.log(state.projects);
     } catch (error){
         console.error('Error fetching projects', error);
     } finally {
@@ -36,7 +37,7 @@ onMounted(async () => {
     <section class="bg-blue-50 px-4 py-10">
       <div class="container-xl lg:container m-auto">
         <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">
-          Browse Jobs
+          Browse My Projects
         </h2>
         <!-- Show loading spinner while loading is true -->
         <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
@@ -45,7 +46,7 @@ onMounted(async () => {
 
         <!-- Show job listing when done loading -->
         <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <JobListing v-for="project in state.projects.slice(0, limit || state.projects.length)" :key="project.id" :project="project" />
+          <ProjectListing v-for="project in state.projects.slice(0, limit || state.projects.length)" :key="project.id" :project="project" />
         </div>
       </div>
     </section>
