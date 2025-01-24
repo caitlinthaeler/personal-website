@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rWWOSXFBloc=",
+  "dgSpecHash": "hODXr/UJpdk=",
   "success": true,
   "projectFilePath": "/Users/caitlin/Documents/GitHub/personal-website/data-api/data-api.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "/Users/caitlin/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/mongodb.bson/3.1.0/mongodb.bson.3.1.0.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/mongodb.driver/3.1.0/mongodb.driver.3.1.0.nupkg.sha512",
+    "/Users/caitlin/.nuget/packages/octokit/14.0.0/octokit.14.0.0.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/sharpcompress/0.30.1/sharpcompress.0.30.1.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/snappier/1.0.0/snappier.1.0.0.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",

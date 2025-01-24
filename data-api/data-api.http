@@ -1,7 +1,10 @@
 @data_api_HostAddress = http://localhost:5283
 
 //GET {{data_api_HostAddress}}/projects/
-GET http://localhost:5283/api/projects-collection/
-Accept: application/json
+//GET http://localhost:5283/api/projects-collection/
+//Accept: application/json
+
+GET https://api.github.com/repos/caitlinthaeler/portfolio_content/contents/sk8-run/thumbnail.png?ref=main
+Authorization: PORTFOLIO-CONTENT-ACCESS-TOKEN
 
 ###

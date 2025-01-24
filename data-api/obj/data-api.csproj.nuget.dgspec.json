@@ -51,6 +51,10 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Octokit": {
+              "target": "Package",
+              "version": "[14.0.0, )"
             }
           },
           "imports": [

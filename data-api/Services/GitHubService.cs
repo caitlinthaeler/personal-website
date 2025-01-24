@@ -8,10 +8,12 @@ public class GitHubService
     private readonly HttpClient _httpClient;
     private readonly string _baseUrl;
     private readonly string _token;
+    private readonly string _owner;
     public GitHubService(IConfiguration config)
     {
         _baseUrl = config["GitHub:BaseUrl"];
         _token = config["GitHub:PersonalAccessToken"];
+        _owner = config["GitHub:Username"];
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", _token);
@@ -19,7 +21,8 @@ public class GitHubService
 
     public async Task<(Stream Content, string ContentType)> GetFileAsync(string repo, string branch, string filePath)
     {
-        var url = $"{_baseUrl}{repo}/contents/{filePath}?ref={branch}";
+        var url = $"{_baseUrl}/repos/{_owner}/{repo}/contents/{branch}/{filePath}?ref={branch}";
+        Console.WriteLine(url);
         var response = await _httpClient.GetAsync(url);
 
         if (!response.IsSuccessStatusCode)

@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router'
 import { defineProps, ref, computed } from 'vue';
 import { onMounted } from 'vue';
 import placeholderImage from '@/assets/img/placeholder.png'
+import axios from 'axios'
 
 const props = defineProps({
     project: {
@@ -25,11 +26,17 @@ const truncatedDescription = computed(() => {
     return description;
 });
 
-const imageUrl = ref("assets/img/placeholder.png");
+const imageUrl = placeholderImage;
 
 const fetchImage = async () => {
+    if (!props.project.thumbnail){
+        console.warn('No thumbnail specified for project: ', props.title);
+        return; // Use placeholder image
+    }
     try {
-        const response = await axios.get("api/file/portfolio-content/main/{props.project.thumbnail}",
+        console.log(props.project.thumbnail)
+        const encodedThumbnail = encodeURIComponent(props.project.thumbnail);
+        const response = await axios.get(`http://localhost:5283/api/file/portfolio_content/main/${encodedThumbnail}`,
         {
             responseType: "blob",
         }
@@ -42,7 +49,7 @@ const fetchImage = async () => {
     }
 }
 
-
+onMounted(fetchImage);
 
 
 </script>

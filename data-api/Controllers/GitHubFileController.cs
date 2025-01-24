@@ -5,7 +5,7 @@ using data_api.Services;
 namespace data_api.Controllers;
 
 [ApiController]
-[Route("api/media")]
+[Route("api/")]
 public class FileController : ControllerBase
 {
     private readonly GitHubService _gitHubService;
@@ -20,7 +20,7 @@ public class FileController : ControllerBase
     {
         try
         {
-            (Stream content, string contentType) = await _gitHubService.GetFileAsysnc(repo, branch, filePath);
+            (Stream content, string contentType) = await _gitHubService.GetFileAsync(repo, branch, filePath);
             return File(content, contentType);
         }
         catch (Exception ex)
