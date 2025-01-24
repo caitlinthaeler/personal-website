@@ -51,6 +51,7 @@ foreach (var collection in collections)
     );
 }
 
+builder.Services.AddSingleton<GitHubService>();
 
 builder.Services.AddControllers();
 

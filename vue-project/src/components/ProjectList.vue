@@ -18,11 +18,32 @@ const state = reactive({
     isLoading: true
 });
 
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+const getDateOnly = (dateTime) => {
+    let [year, month] = dateTime.split("T")[0].split("-").map(Number);
+    return `${months[month - 1]} ${year}`;
+    
+}
+
+const formatDate = (date, placeholder) => {
+  return date ? getDateOnly(date) : placeholder;
+}
+
+const formatProjectDates = (projects) => {
+  return projects.map(project => ({
+    ...project,
+    formattedStartDate: formatDate(project.startDate, 'N/A'),
+    formattedEndDate: formatDate(project.endDate, 'Present'),
+  }));
+}
+
 
 onMounted(async () => {
     try {
         const response = await axios.get('http://localhost:5283/api/projects-collection/');
-        state.projects = response.data;
+        state.projects = formatProjectDates(response.data);
+
         console.log(state.projects);
     } catch (error){
         console.error('Error fetching projects', error);

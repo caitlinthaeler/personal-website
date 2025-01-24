@@ -1,6 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { defineProps, ref, computed } from 'vue';
+import { onMounted } from 'vue';
+import placeholderImage from '@/assets/img/placeholder.png'
 
 const props = defineProps({
     project: {
@@ -23,6 +25,25 @@ const truncatedDescription = computed(() => {
     return description;
 });
 
+const imageUrl = ref("assets/img/placeholder.png");
+
+const fetchImage = async () => {
+    try {
+        const response = await axios.get("api/file/portfolio-content/main/{props.project.thumbnail}",
+        {
+            responseType: "blob",
+        }
+        );
+        
+        // Create a URL for the blob data
+        imageUrl.value = URL.createObjectURL(response.data);
+    } catch (error) {
+        console.error("Error fetching image", error);
+    }
+}
+
+
+
 
 </script>
 
@@ -31,8 +52,12 @@ const truncatedDescription = computed(() => {
         <div class="bg-white rounded-xl shadow-md relative">
         <div class="p-4">
             <div class="mb-6">
-                <div class="text-gray-600 my-2">{{ project.startDate }} - {{ project.endDate }}</div>
                 <h3 class="text-xl font-bold">{{ project.title }}</h3>
+                <div class="text-gray-600 my-2 text-sm">{{ project.formattedStartDate }} - {{ project.formattedEndDate }}</div>
+            </div>
+
+            <div class="mb-7">
+                <img :src="imageUrl" alt="Embedded Image" class="max-w-full">
             </div>
 
             <div class="mb-5">
