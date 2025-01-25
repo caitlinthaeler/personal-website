@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "hODXr/UJpdk=",
+  "dgSpecHash": "QrebLZWW2NU=",
   "success": true,
   "projectFilePath": "/Users/caitlin/Documents/GitHub/personal-website/data-api/data-api.csproj",
   "expectedPackageFiles": [
     "/Users/caitlin/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
+    "/Users/caitlin/.nuget/packages/dotenv.net/3.2.1/dotenv.net.3.2.1.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/microsoft.aspnetcore.openapi/9.0.0/microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/microsoft.extensions.logging.abstractions/2.0.0/microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
     "/Users/caitlin/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",

@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using Octokit;
 using System.Threading.Tasks;
+using dotenv.net;
 
 namespace data_api.Services;
 
@@ -13,7 +14,8 @@ public class GitHubService
     private readonly string _owner;
     public GitHubService(IConfiguration config)
     {
-        var token = config["GitHub:AccessToken"];
+        Dotenv.Load();
+        var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
 
         if (string.IsNullOrEmpty(token))
         {
@@ -33,6 +35,28 @@ public class GitHubService
         catch (Exception ex)
         {
             throw new InvalidOperationException("Error fetching file contents", ex);
+        }
+    }
+
+    public async Task<byte[]> GetFileRawContent(string owner, string repo, string filePath, string branch = "main")
+    {
+        try
+        {
+            Console.WriteLine($"Fetching: owner={owner}, repo={repo}, path={filePath}, branch={branch}");
+            var fileContent = await _client.Repository.Content.GetRawContentByRef(owner, repo, filePath, branch);
+            return fileContent;
+        }
+        catch (NotFoundException ex)
+        {
+            throw new Exception($"File not found. Check filePath, owner, and repo. {ex.Message}", ex);
+        }
+        catch (AuthorizationException ex)
+        {
+            throw new Exception($"Access denied. Check PAT and repository permissions. {ex.Message}", ex);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error fetching file contents: {ex.Message}", ex);
         }
     }
 }

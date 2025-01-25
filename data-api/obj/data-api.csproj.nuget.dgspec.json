@@ -55,6 +55,10 @@
             "Octokit": {
               "target": "Package",
               "version": "[14.0.0, )"
+            },
+            "dotenv.net": {
+              "target": "Package",
+              "version": "[3.2.1, )"
             }
           },
           "imports": [
