@@ -10,11 +10,9 @@ public class GitHubService
 {
     private readonly GitHubClient _client;
     private readonly string _baseUrl;
-    private readonly string _token;
-    private readonly string _owner;
     public GitHubService(IConfiguration config)
     {
-        Dotenv.Load();
+        DotEnv.Load();
         var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
 
         if (string.IsNullOrEmpty(token))

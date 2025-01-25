@@ -9,7 +9,9 @@
       "data-api/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "9.0.0",
-          "MongoDB.Driver": "3.1.0"
+          "MongoDB.Driver": "3.1.0",
+          "Octokit": "14.0.0",
+          "dotenv.net": "3.2.1"
         },
         "runtime": {
           "data-api.dll": {}
@@ -23,6 +25,14 @@
           "lib/net5.0/DnsClient.dll": {
             "assemblyVersion": "1.6.1.0",
             "fileVersion": "1.6.1.0"
+          }
+        }
+      },
+      "dotenv.net/3.2.1": {
+        "runtime": {
+          "lib/netstandard2.1/dotenv.net.dll": {
+            "assemblyVersion": "3.2.1.0",
+            "fileVersion": "3.2.1.0"
           }
         }
       },
@@ -82,6 +92,14 @@
           }
         }
       },
+      "Octokit/14.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Octokit.dll": {
+            "assemblyVersion": "14.0.0.0",
+            "fileVersion": "14.0.0.0"
+          }
+        }
+      },
       "SharpCompress/0.30.1": {
         "runtime": {
           "lib/net5.0/SharpCompress.dll": {
@@ -131,6 +149,13 @@
       "path": "dnsclient/1.6.1",
       "hashPath": "dnsclient.1.6.1.nupkg.sha512"
     },
+    "dotenv.net/3.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2fc2s5PH6wAoWQ8bpyVgz28y9qMs/t8ToiCKqSM6mWpjgg4QQSPtZ0nia0x/OebGLSDbxyOelVH+fULZH7N4mA==",
+      "path": "dotenv.net/3.2.1",
+      "hashPath": "dotenv.net.3.2.1.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.OpenApi/9.0.0": {
       "type": "package",
       "serviceable": true,
@@ -179,6 +204,13 @@
       "sha512": "sha512-+O7lKaIl7VUHptE0hqTd7UY1G5KDp/o8S4upG7YL4uChMNKD/U6tz9i17nMGHaD/L2AiPLgaJcaDe2XACsegGA==",
       "path": "mongodb.driver/3.1.0",
       "hashPath": "mongodb.driver.3.1.0.nupkg.sha512"
+    },
+    "Octokit/14.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jGOuTH1l+TCpJH+fwYOp7USzHDuGfN1jKbLz3J2COwyn+wL08eynvpnM6rY2qkzIEXum3PN2p2QkP3BW/p9Qcw==",
+      "path": "octokit/14.0.0",
+      "hashPath": "octokit.14.0.0.nupkg.sha512"
     },
     "SharpCompress/0.30.1": {
       "type": "package",

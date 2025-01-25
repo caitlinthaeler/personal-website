@@ -5,6 +5,6 @@
 //Accept: application/json
 
 GET https://api.github.com/repos/caitlinthaeler/portfolio_content/contents/sk8-run/thumbnail.png?ref=main
-Authorization: PORTFOLIO-CONTENT-ACCESS-TOKEN
+Authorization: Bearer {{$dotenv GITHUB_TOKEN}}
 
 ###

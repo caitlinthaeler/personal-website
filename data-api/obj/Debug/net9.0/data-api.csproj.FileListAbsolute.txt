@@ -38,3 +38,9 @@
 /Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/SharpCompress.dll
 /Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/Snappier.dll
 /Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/ZstdSharp.dll
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/unit-testing-using-dotnet-test/PrimeService.Tests/obj/PrimeService.Tests.csproj.nuget.dgspec.json
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/unit-testing-using-dotnet-test/PrimeService.Tests/obj/project.assets.json
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/unit-testing-using-dotnet-test/PrimeService/obj/PrimeService.csproj.nuget.dgspec.json
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/unit-testing-using-dotnet-test/PrimeService/obj/project.assets.json
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/dotenv.net.dll
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/Octokit.dll
