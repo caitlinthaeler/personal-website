@@ -54,10 +54,10 @@ onMounted(fetchImage);
 
 <template>
     <div>
-        <div class="bg-white rounded-xl shadow-md relative">
+        <div class="bg-lemon sharp-xl shadow-md relative">
         <div class="p-4">
             <div class="mb-6">
-                <h3 class="text-xl font-bold">{{ project.title }}</h3>
+                <h3 class="text-3xl text-center font-bold">{{ project.title }}</h3>
                 <div class="text-gray-600 my-2 text-sm">{{ project.formattedStartDate }} - {{ project.formattedEndDate }}</div>
             </div>
 

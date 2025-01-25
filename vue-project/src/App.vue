@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <div class="font-handwriting text-2xl">
+  <div class="font-handwriting text-2xl bg-grape">
     <Navbar />
     <RouterView />
   </div>

@@ -6,9 +6,8 @@ import ProjectList from '@/components/ProjectList.vue'
 </script>
 
 <template>
-    <div>
-        <Hero/>
-        <HomeCards />
+    <div >
+        <Hero />
         <ProjectList :limit="3" :showButton="true"/>
     </div>
 </template>

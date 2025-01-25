@@ -55,9 +55,9 @@ onMounted(async () => {
 
 <template>
   <div>
-    <section class="bg-blue-50 px-4 py-10">
+    <section class="bg-grape px-10 py-10">
       <div class="container-xl lg:container m-auto">
-        <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">
+        <h2 class="text-3xl font-bold text-plum mb-6 text-center">
           Browse My Projects
         </h2>
         <!-- Show loading spinner while loading is true -->

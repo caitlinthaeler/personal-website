@@ -5,9 +5,9 @@ import Card from '@/components/Card.vue'
 
 <template>
     <!-- Developers and Employers -->
-    <section class="py-4">
-      <div class="container-xl lg:container m-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
+    <section class="py-4 bg-grape">
+      <div class="container-xl lg:container mx-auto px-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 p-4 rounded-lg">
           <Card>
             <h2 class="text-2xl font-bold">For Developers</h2>
             <p class="mt-2 mb-4">

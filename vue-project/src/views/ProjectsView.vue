@@ -5,6 +5,6 @@ import ProjectList from '@/components/ProjectList.vue';
 
 <template>
     <div>
-        <ProjectList />
+        <ProjectList  />
     </div>
 </template>
