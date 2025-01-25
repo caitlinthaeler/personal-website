@@ -26,7 +26,7 @@ const truncatedDescription = computed(() => {
     return description;
 });
 
-const imageUrl = placeholderImage;
+const imageUrl = ref(placeholderImage);
 
 const fetchImage = async () => {
     if (!props.project.thumbnail){
@@ -36,14 +36,12 @@ const fetchImage = async () => {
     try {
         console.log(props.project.thumbnail)
         const encodedThumbnail = encodeURIComponent(props.project.thumbnail);
-        const response = await axios.get(`http://localhost:5283/api/file/portfolio_content/main/${encodedThumbnail}`,
-        {
-            responseType: "blob",
-        }
-        );
-        
+        // example request for image url: http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
+        const response = await axios.get(`http://localhost:5283/api/caitlinthaeler/portfolio_content/image/${encodedThumbnail}`,);
+        console.log(response)
         // Create a URL for the blob data
-        imageUrl.value = URL.createObjectURL(response.data);
+        imageUrl.value = response.data.imageUrl;
+        console.log(imageUrl.value);
     } catch (error) {
         console.error("Error fetching image", error);
     }

@@ -14,8 +14,44 @@ public class GitHubService
     private readonly string _repo;
     public GitHubService(IConfiguration config)
     {
-        DotEnv.Load();
+         //Get the parent directory
+        //  string currentDirectory = Directory.GetCurrentDirectory();
+        //  string parentDirectory = Directory.GetParent(currentDirectory)?.FullName;
+
+        // if (string.IsNullOrEmpty(parentDirectory))
+        // {
+        //     throw new Exception("Failed to locate the parent directory.");
+        // }
+
+        //  string envFilePath = Path.Combine(parentDirectory, ".env");
+
+        // Console.WriteLine($"Resolved .env path: {envFilePath}");
+
+        // if (!File.Exists(envFilePath))
+        // {
+        //     throw new FileNotFoundException(".env file not found at: " + envFilePath);
+        // }
+        // string envContent = File.ReadAllText(envFilePath);
+        // Console.WriteLine("Contents of .env file:");
+        // Console.WriteLine(envContent);
+
+        // // Load the .env file
+        // DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] { envFilePath }));
+
+        // // Read environment variables
+        // var enVars = DotEnv.Read();
+
+        // // Print out all key-value pairs
+        // Console.WriteLine("Environment Variables Loaded:");
+        // foreach (var kvp in enVars)
+        // {
+        //     Console.WriteLine($"{kvp.Key} = {kvp.Value}");
+        // }
+
+        //var token = enVars.ContainsKey("GITHUB_TOKEN") ? enVars["GITHUB_TOKEN"] : null;
+
         var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+        Console.WriteLine("GitHub Token Loaded: " + (!string.IsNullOrEmpty(token) ? "Yes" : "No"));
 
         if (string.IsNullOrEmpty(token))
         {
@@ -77,11 +113,15 @@ public class GitHubService
 
     public async Task<string> GetImageUrlAsync(string owner, string repo, string filePath)
     {
-        // Fetch the file using GitHub API (you might already have this in place)
-        // Extract image URL (assuming the file content contains metadata that gives us the URL)
-        // This will depend on your method of accessing GitHub (e.g., raw file URL or GitHub API link)
-        var imageUrl = $"https://raw.githubusercontent.com/{owner}/{repo}/main/{filePath}";
-        return imageUrl;
+        try
+        {
+            var file = await _client.Repository.Content.GetAllContentsByRef(owner, repo, filePath, "main");
+            return file[0].DownloadUrl; // Decode base64 content if needed
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException("Error fetching file contents", ex);
+        }
     }
 
 }

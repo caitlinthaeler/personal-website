@@ -4,7 +4,10 @@
 //GET http://localhost:5283/api/projects-collection/
 //Accept: application/json
 
-GET https://api.github.com/repos/caitlinthaeler/portfolio_content/contents/sk8-run/thumbnail.png?ref=main
+# GET https://api.github.com/repos/caitlinthaeler/portfolio_content/contents/sk8-run/thumbnail.png?ref=main
+# Authorization: Bearer {{$dotenv GITHUB_TOKEN}}
+
+GET http://localhost:5283/api/image/sk8-run/thumbnail.png?owner=caitlinthaeler&repo=portfolio_content
 Authorization: Bearer {{$dotenv GITHUB_TOKEN}}
 
 ###

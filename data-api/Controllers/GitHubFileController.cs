@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using data_api.Services;
-
+using System.Text.Json;
 
 namespace data_api.Controllers;
 
@@ -21,6 +21,7 @@ public class FileController : ControllerBase
         try
         {
             var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
+            
             return Ok(new  { content });
         }
         catch (Exception ex)
@@ -42,13 +43,17 @@ public class FileController : ControllerBase
                 return NotFound(new { error = "Image URL not found" });
             }
 
-            return Ok(new { imageUrl });
+            var result = new { imageUrl };
+            Console.WriteLine(result);
+            
+            return Ok(result);
         }
         catch (Exception ex)
         {
             return BadRequest(new { error = ex.Message });
         }
     }
+
 
     [HttpGet("file/{*filePath}")]
     public async Task<IActionResult> GetFile(string owner, string repo, string filePath)
