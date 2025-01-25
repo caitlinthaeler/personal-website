@@ -10,6 +10,8 @@ public class GitHubService
 {
     private readonly GitHubClient _client;
     private readonly string _baseUrl;
+    private readonly string _owner;
+    private readonly string _repo;
     public GitHubService(IConfiguration config)
     {
         DotEnv.Load();
@@ -21,6 +23,8 @@ public class GitHubService
         }
         _client = new GitHubClient(new ProductHeaderValue("data-api"));
         _client.Credentials = new Credentials(token);
+        _owner = config["GitHub:Owner"];
+        _repo = config["GitHub:RepositoryName"];
     }
 
     public async Task<string> GetFileAsync(string owner, string repo, string filePath, string branch = "main")
@@ -28,6 +32,19 @@ public class GitHubService
         try
         {
             var file = await _client.Repository.Content.GetAllContentsByRef(owner, repo, filePath, branch);
+            return file[0].Content; // Decode base64 content if needed
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException("Error fetching file contents", ex);
+        }
+    }
+
+    public async Task<string> GetFileAsync(string filePath, string branch = "main")
+    {
+        try
+        {
+            var file = await _client.Repository.Content.GetAllContentsByRef(_owner, _repo, filePath, branch);
             return file[0].Content; // Decode base64 content if needed
         }
         catch (Exception ex)
@@ -57,4 +74,14 @@ public class GitHubService
             throw new Exception($"Error fetching file contents: {ex.Message}", ex);
         }
     }
+
+    public async Task<string> GetImageUrlAsync(string owner, string repo, string filePath)
+    {
+        // Fetch the file using GitHub API (you might already have this in place)
+        // Extract image URL (assuming the file content contains metadata that gives us the URL)
+        // This will depend on your method of accessing GitHub (e.g., raw file URL or GitHub API link)
+        var imageUrl = $"https://raw.githubusercontent.com/{owner}/{repo}/main/{filePath}";
+        return imageUrl;
+    }
+
 }
