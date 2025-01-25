@@ -27,7 +27,9 @@ export default {
       gridTemplateColumns: {
         '70/30': '70% 28%'
       },
-      
+      screens: {
+        xs: '540px'
+      }
     },
   },
   variants: {

@@ -62,7 +62,7 @@ onMounted(fetchImage);
             </div>
 
             <div class="mb-7">
-                <img :src="imageUrl" alt="Embedded Image" class="max-w-full">
+                <img :src="imageUrl" alt="Embedded Image">
             </div>
 
             <div class="mb-5">

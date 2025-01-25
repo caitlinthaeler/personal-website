@@ -8,6 +8,6 @@ import ProjectList from '@/components/ProjectList.vue'
 <template>
     <div >
         <Hero />
-        <ProjectList :limit="3" :showButton="true"/>
+        <ProjectList :limit="4" :showButton="true"/>
     </div>
 </template>
