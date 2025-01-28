@@ -1,13 +1,11 @@
 <script setup>
 import Hero from '@/components/Hero.vue'
-import HomeCards from '@/components/HomeCards.vue'
-import JobListings from '@/components/JobListings.vue'
-import ProjectList from '@/components/ProjectList.vue'
+import Carousel from '@/components/Carousel.vue'
 </script>
 
 <template>
-    <div >
+    <div class="flex flex-col px-10 gap-10 py-5">
         <Hero />
-        <ProjectList :limit="3" :showButton="true" class="flex-1"/>
+        <Carousel />
     </div>
 </template>
