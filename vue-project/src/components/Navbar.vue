@@ -2,11 +2,17 @@
 import { RouterLink, useRoute } from 'vue-router'
 import logo from '@/assets/img/bond-unclicked.png'
 
+const activeTextColor = 'text-lemon-dark'; //on the page
+const hoverTextColor = 'hover:text-plum'; //hovering
+const inactiveTextColor = 'text-lemon' //normal
+
 const isActiveLink = (routePath) => {
   //gets the current route
   const route = useRoute();
   return route.path === routePath;
 }
+
+
 </script>
 
 <template>
@@ -30,9 +36,9 @@ const isActiveLink = (routePath) => {
                   to="/"
                   :class="[
                     isActiveLink('/')
-                      ? 'bg-green-900 text-lemon-dark'
-                      : 'hover:bg-gray-900 hover:text-lemon-light', 
-                      'text-lemon', 
+                      ? activeTextColor
+                      : hoverTextColor, 
+                      inactiveTextColor, 
                       'px-3', 
                       'py-2', 
                       'rounded-md'
@@ -43,9 +49,9 @@ const isActiveLink = (routePath) => {
                   to="/projects"
                   :class="[
                     isActiveLink('/projects')
-                      ? 'bg-green-900 text-lemon-dark'
-                      : 'hover:bg-gray-900 hover:text-lemon-light', 
-                      'text-lemon', 
+                    ? activeTextColor
+                      : hoverTextColor, 
+                      inactiveTextColor, 
                       'px-3', 
                       'py-2', 
                       'rounded-md'
@@ -68,10 +74,8 @@ const isActiveLink = (routePath) => {
                 <RouterLink
                   to="/experience"
                   :class="[
-                    isActiveLink('/experience')
-                      ? 'bg-green-900 text-lemon-dark'
-                      : 'hover:bg-gray-900 hover:text-lemon-light', 
-                      'text-lemon', 
+                    isActiveLink('/experience') ? activeTextColor : inactiveTextColor,
+                      hoverTextColor,
                       'px-3', 
                       'py-2', 
                       'rounded-md'

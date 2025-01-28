@@ -89,7 +89,7 @@ onMounted(fetchImage);
                     Live Demo
             </RouterLink>
                 <RouterLink 
-                    :to="'/projects/' + project.id"
+                    :to="'/projects/' + project.title"
                     class="h-[36px] bg-plum hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center text-sm"
                 >
                     Read More

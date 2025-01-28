@@ -83,7 +83,7 @@ onMounted(fetchImage);
             </div>
             <div class="flex flex-col gap-5 md:flex-row justify-center text-center text-sm">
                 <div>
-                    <button class="bg-lemon p-2">View Resume</button>
+                    <button class="bg-lemon p-2 hover:bg-plum">View Resume</button>
                 </div>
                 <!-- <div class="md:basis-1/3 md:flex-none">
                     <button class="flex items-center justify-center bg-lemon p-2">View Resume</button>
