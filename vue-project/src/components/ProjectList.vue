@@ -66,8 +66,8 @@ onMounted(async () => {
         </div>
 
         <!-- Show job listing when done loading -->
-        <div v-else class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-auto">
-          <ProjectListing class=" w-[200px] h-[100px]" v-for="project in state.projects.slice(0, limit || state.projects.length)" :key="project.id" :project="project" />
+        <div v-else class="grid grid-cols-1 sm:grid-cols-1 project-list-md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 ">
+          <ProjectListing class="" v-for="project in state.projects.slice(0, limit || state.projects.length)" :key="project.id" :project="project" />
         </div>
       </div>
     </section>

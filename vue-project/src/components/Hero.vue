@@ -23,30 +23,30 @@ const props = defineProps({
 
 const imageUrl = ref(cachedState.portraitUrl || placeholderImage);
 
-const fetchImage = async () => {
-    if (!cachedState.portraitUrl)
-    {
-        console.log('fetching portrait')
-        try {
-        const encodedThumbnail = encodeURIComponent(props.portrait);
-        // example request for image url: http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
-        const response = await axios.get(`http://localhost:5283/api/caitlinthaeler/portfolio_content/image/${encodedThumbnail}`,);
-        console.log(response)
-        // Create a URL for the blob data
-        cachedState.portraitUrl = response.data.imageUrl;
-        imageUrl.value = cachedState.portraitUrl;
-        console.log(imageUrl.value);
-        } catch (error) {
-            console.error("Error fetching image", error);
-        }
-    } else {
-        imageUrl.value = cachedState.portraitUrl;
-    }
+// const fetchImage = async () => {
+//     if (!cachedState.portraitUrl)
+//     {
+//         console.log('fetching portrait')
+//         try {
+//         const encodedThumbnail = encodeURIComponent(props.portrait);
+//         // example request for image url: http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
+//         const response = await axios.get(`http://localhost:5283/api/caitlinthaeler/portfolio_content/image/${encodedThumbnail}`,);
+//         console.log(response)
+//         // Create a URL for the blob data
+//         cachedState.portraitUrl = response.data.imageUrl;
+//         imageUrl.value = cachedState.portraitUrl;
+//         console.log(imageUrl.value);
+//         } catch (error) {
+//             console.error("Error fetching image", error);
+//         }
+//     } else {
+//         imageUrl.value = cachedState.portraitUrl;
+//     }
     
-}
+// }
 
 
-onMounted(fetchImage);
+// onMounted();
 </script>
 
 <template>

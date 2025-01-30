@@ -82,6 +82,17 @@ const isActiveLink = (routePath) => {
                     ]"
                   >Experience</RouterLink
                 >
+                <RouterLink
+                  to="/about"
+                  :class="[
+                    isActiveLink('/about') ? activeTextColor : inactiveTextColor,
+                      hoverTextColor,
+                      'px-3', 
+                      'py-2', 
+                      'rounded-md'
+                    ]"
+                  >About</RouterLink
+                >
                 
               </div>
             </div>

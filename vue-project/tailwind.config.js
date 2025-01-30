@@ -28,7 +28,8 @@ export default {
         '70/30': '70% 28%'
       },
       screens: {
-        xs: '540px'
+        xs: '540px',
+        'project-list-md': '900px',
       }
     },
   },

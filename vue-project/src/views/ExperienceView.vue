@@ -5,6 +5,6 @@ import UnderConstruction from '@/components/UnderConstruction.vue';
 
 <template>
     <div>
-       <UnderConstruction />
+       <UnderConstruction title="Experience"/>
     </div>
 </template>

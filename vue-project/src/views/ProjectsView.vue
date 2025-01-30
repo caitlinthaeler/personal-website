@@ -4,7 +4,8 @@ import ProjectList from '@/components/ProjectList.vue';
 </script>
 
 <template>
-    <div class="h-screen flex-1 overflow-y-auto">
-        <ProjectList  />
+    <h1 class="p-10 text-grape-light text-7xl">Projects</h1>
+    <div class="">
+        <ProjectList />
     </div>
 </template>

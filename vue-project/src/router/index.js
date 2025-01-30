@@ -9,6 +9,7 @@ import EditJobView from '@/views/EditJobView.vue'
 import ProjectsView from '@/views/ProjectsView.vue'
 import ProjectView from '@/views/ProjectView.vue'
 import ExperienceView from '@/views/ExperienceView.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +53,11 @@ const router = createRouter({
             path: '/experience',
             name: 'experience',
             component: ExperienceView
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: AboutView
         },
         {
             path: '/:catchAll(.*)',

@@ -7,7 +7,8 @@
 # GET https://api.github.com/repos/caitlinthaeler/portfolio_content/contents/sk8-run/thumbnail.png?ref=main
 # Authorization: Bearer {{$dotenv GITHUB_TOKEN}}
 
-GET http://localhost:5283/api/image/sk8-run/thumbnail.png?owner=caitlinthaeler&repo=portfolio_content
+# Request to get the image URL from your API
+GET http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
 Authorization: Bearer {{$dotenv GITHUB_TOKEN}}
 
 ###

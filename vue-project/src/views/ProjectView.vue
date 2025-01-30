@@ -36,7 +36,7 @@ const state = reactive({
         <!-- show page according to id -->
         <div>
             <div v-if="!isReady">
-                <UnderConstruction />
+                <UnderConstruction :title="projectId"/>
             </div>
             <div v-else>
             

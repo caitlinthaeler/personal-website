@@ -8,9 +8,11 @@ import axios from 'axios'
 const props = defineProps({
     project: {
         type: Object,
-        required: true
+        required: true,
     }
 });
+
+console.log("project", props.project);
 
 const showFullDescription = ref(false);
 
@@ -53,10 +55,10 @@ onMounted(fetchImage);
 </script>
 
 <template>
-    <div>
-        <div class="bg-lemon sharp-xl shadow-md relative">
-        <div class="p-4">
-            <div class="mb-6">
+    <div class="justify-self-center">
+        <div class="bg-lemon text-grape sharp-xl shadow-md w-[400px] transition-transform duration-300 ease-in-out hover:scale-105">
+        <div class="p-4 ">
+            <div class="mb-6 ">
                 <h3 class="text-3xl text-center font-bold">{{ project.title }}</h3>
                 <div class="text-gray-600 my-2 text-sm">{{ project.formattedStartDate }} - {{ project.formattedEndDate }}</div>
             </div>
@@ -75,26 +77,29 @@ onMounted(fetchImage);
             </div>
             <div class="border border-gray-100 mb-5"></div>
 
+            <div>
+
+            </div>
+
             <div class="flex flex-row lg:flex-row mb-4">
                 <RouterLink 
                     :to="'/projects/' + project.id"
-                    class="h-[36px] bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center text-sm"
-                >
+                    class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >
                     Github
             </RouterLink>
             <RouterLink 
                     :to="'/projects/' + project.id"
-                    class="h-[36px] bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center text-sm"
-                >
+                    class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >
                     Live Demo
             </RouterLink>
                 <RouterLink 
                     :to="'/projects/' + project.title"
-                    class="h-[36px] bg-plum hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center text-sm"
+                    class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"
                 >
                     Read More
             </RouterLink>
             </div>
+            
         </div>
     </div>
     </div>
