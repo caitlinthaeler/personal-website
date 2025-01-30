@@ -63,7 +63,7 @@ onMounted(fetchImage);
                 <div class="text-gray-600 my-2 text-sm">{{ project.formattedStartDate }} - {{ project.formattedEndDate }}</div>
             </div>
 
-            <div class="mb-7">
+            <div class="mb-5">
                 <img :src="imageUrl" alt="Embedded Image">
             </div>
 
@@ -75,13 +75,17 @@ onMounted(fetchImage);
                     {{ showFullDescription ? 'Less' : 'More' }}
                 </button> -->
             </div>
+            <div class="mb-4 text-sm text-grape">
+                <div v-for="skill in project.skills" :key="skill" class="inline-block bg-plum px-2 py-1 rounded-md m-1">
+                    {{ skill }}
+                </div>
+            </div>
+ 
             <div class="border border-gray-100 mb-5"></div>
 
-            <div>
+            
 
-            </div>
-
-            <div class="flex flex-row lg:flex-row mb-4">
+            <div class="flex flex-row lg:flex-row">
                 <RouterLink 
                     :to="'/projects/' + project.id"
                     class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >

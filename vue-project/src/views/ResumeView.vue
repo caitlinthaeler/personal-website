@@ -17,8 +17,13 @@ import { RouterLink } from 'vue-router'
                     Download Resume
                 </button>
             </div>
-            <div class="bg-lemon">
-                Resume
+            <div class="bg-lemon p-5">
+                <p >
+                    Resume
+                </p>
+                <p class="p-5 text-center">
+                    Nothing here yet
+                </p>
             </div>
         </div>
        

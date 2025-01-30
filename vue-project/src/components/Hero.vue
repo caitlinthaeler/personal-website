@@ -12,41 +12,42 @@ const props = defineProps({
     },
     subtitle: {
         type: String,
-        default: 'Hello there! I\m a computer science student at the university of aberdeen'
+        default: ''
     },
     portrait: {
         type: String,
-        default: 'ui/portrait-no-bg.png'
+        // default: 'ui/portrait-no-bg.png'
+        default: 'ui/caitlinpfp2024.png'
     }
     
 });
 
 const imageUrl = ref(cachedState.portraitUrl || placeholderImage);
 
-// const fetchImage = async () => {
-//     if (!cachedState.portraitUrl)
-//     {
-//         console.log('fetching portrait')
-//         try {
-//         const encodedThumbnail = encodeURIComponent(props.portrait);
-//         // example request for image url: http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
-//         const response = await axios.get(`http://localhost:5283/api/caitlinthaeler/portfolio_content/image/${encodedThumbnail}`,);
-//         console.log(response)
-//         // Create a URL for the blob data
-//         cachedState.portraitUrl = response.data.imageUrl;
-//         imageUrl.value = cachedState.portraitUrl;
-//         console.log(imageUrl.value);
-//         } catch (error) {
-//             console.error("Error fetching image", error);
-//         }
-//     } else {
-//         imageUrl.value = cachedState.portraitUrl;
-//     }
+const fetchImage = async () => {
+    if (!cachedState.portraitUrl)
+    {
+        console.log('fetching portrait')
+        try {
+        const encodedThumbnail = encodeURIComponent(props.portrait);
+        // example request for image url: http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
+        const response = await axios.get(`http://localhost:5283/api/caitlinthaeler/portfolio_content/image/${encodedThumbnail}`,);
+        console.log(response)
+        // Create a URL for the blob data
+        cachedState.portraitUrl = response.data.imageUrl;
+        imageUrl.value = cachedState.portraitUrl;
+        console.log(imageUrl.value);
+        } catch (error) {
+            console.error("Error fetching image", error);
+        }
+    } else {
+        imageUrl.value = cachedState.portraitUrl;
+    }
     
-// }
+}
 
 
-// onMounted();
+onMounted(fetchImage);
 </script>
 
 <template>
@@ -68,7 +69,7 @@ const imageUrl = ref(cachedState.portraitUrl || placeholderImage);
                     <div class="flex justify-end h-full">
                         <div class="w-2/3 flex items-end">
                             <p class="my-4 text-xl text-plum">
-                            {{ subtitle}}
+                                If you've got the <span class="text-plum-light">vision</span>, I've got the <span class="text-plum-light">code</span>.
                         </p>
                         </div>
                             

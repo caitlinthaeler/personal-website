@@ -12,7 +12,7 @@ export default {
       grape: {
         light: '#e2ceff',
         DEFAULT: '#332756ff',
-        dark: '',
+        dark: '#120c2f',
       },
       lemon: {
         light: '#fffcf1ff',
