@@ -9,15 +9,15 @@ import { RouterLink } from 'vue-router'
                 Resume
             </h1>
             
-            <div class="flex flex-row">
+            <div class="flex flex-row justify-between pb-2">
                 <p class="mt-10 text-grape-light text-md">
                 Updated in January 2025
                 </p>
-                <button>
-                    Download button
+                <button class="text-grape bg-lemon hover:bg-plum rounded-md px-3 py-2 mt-4">
+                    Download Resume
                 </button>
             </div>
-            <div>
+            <div class="bg-lemon">
                 Resume
             </div>
         </div>

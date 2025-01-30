@@ -83,7 +83,8 @@ const imageUrl = ref(cachedState.portraitUrl || placeholderImage);
             </div>
             <div class="flex flex-col gap-5 md:flex-row justify-center text-center text-sm">
                 <div>
-                    <button class="bg-lemon p-2 hover:bg-plum">View Resume</button>
+                    <RouterLink to="/resume" class="text-grape bg-lemon hover:bg-plum rounded-md px-3 py-2 mt-4"
+                    >View Resume</RouterLink>
                 </div>
                 <!-- <div class="md:basis-1/3 md:flex-none">
                     <button class="flex items-center justify-center bg-lemon p-2">View Resume</button>

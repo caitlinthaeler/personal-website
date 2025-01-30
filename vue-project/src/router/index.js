@@ -10,6 +10,7 @@ import ProjectsView from '@/views/ProjectsView.vue'
 import ProjectView from '@/views/ProjectView.vue'
 import ExperienceView from '@/views/ExperienceView.vue'
 import AboutView from '@/views/AboutView.vue'
+import ResumeView from '@/views/ResumeView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +59,11 @@ const router = createRouter({
             path: '/about',
             name: 'about',
             component: AboutView
+        },
+        {
+            path: '/resume',
+            name: 'resume',
+            component: ResumeView
         },
         {
             path: '/:catchAll(.*)',
