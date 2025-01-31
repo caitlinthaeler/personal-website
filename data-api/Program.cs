@@ -2,9 +2,7 @@ using data_api.Services;
 using data_api.Models;
 using data_api.Utils;
 
-string root = Directory.GetCurrentDirectory();
-//string dotenv = Path.Combine(root, ".env");
-DotEnv.Load();
+DotEnv.Load();  // No need to pass filePath anymore
 
 var builder = WebApplication.CreateBuilder(args);
 var AllowedOrigins = builder.Configuration.GetSection("AllowedCorsOrigins").Get<string[]>();
