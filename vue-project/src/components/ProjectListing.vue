@@ -64,7 +64,7 @@ onMounted(fetchImage);
             </div>
 
             <div class="mb-5">
-                <img :src="imageUrl" alt="Embedded Image">
+                <img :src="imageUrl" alt="Embedded Image" >
             </div>
 
             <div class="mb-5">
