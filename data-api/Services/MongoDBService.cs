@@ -8,8 +8,13 @@ public class MongoDBService<T> : IDataService<T> where T : class
 {
     private readonly IMongoCollection<T> _collection;
 
-    public MongoDBService(string connectionString, string databaseName, string collectionName)
+    public MongoDBService(string databaseName, string collectionName)
     {
+        var connectionString = Environment.GetEnvironmentVariable("MONGO_URI");
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new InvalidOperationException("MONGO_URI is not configured");
+        }
         var client = new MongoClient(connectionString);
         var database = client.GetDatabase(databaseName);
         _collection = database.GetCollection<T>(collectionName);

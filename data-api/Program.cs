@@ -25,7 +25,6 @@ builder.Services.AddCors(options =>
 //builder.Services.AddSingleton<WeatherService>();
 //builder.Services.AddSingleton<TestService>();
 
-var connectionString = builder.Configuration[$"MongoDB:ConnectionString"];
 var databaseName = builder.Configuration["MongoDB:DatabaseName"];
 var mongoConfig = builder.Configuration.GetSection("MongoDB:Collections");
 var collections = mongoConfig.Get<List<Dictionary<string, string>>>();
@@ -48,7 +47,6 @@ foreach (var collection in collections)
             return ActivatorUtilities.CreateInstance(
                 sp,
                 serviceType,
-                connectionString,
                 databaseName,
                 collectionName
             );

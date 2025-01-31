@@ -17,19 +17,19 @@ public static class DotEnv
 
          string envFilePath = Path.Combine(parentDirectory, ".env");
 
-        Console.WriteLine($"Resolved .env path: {envFilePath}");
+        //Console.WriteLine($"Resolved .env path: {envFilePath}");
 
         if (!File.Exists(envFilePath))
         {
             throw new FileNotFoundException(".env file not found at: " + envFilePath);
         }
         string envContent = File.ReadAllText(envFilePath);
-        Console.WriteLine("Contents of .env file:");
-        Console.WriteLine(envContent);
+        //Console.WriteLine("Contents of .env file:");
+        //Console.WriteLine(envContent);
 
         foreach (var line in File.ReadAllLines(envFilePath))
         {
-            Console.WriteLine("variable: " + line);
+            //Console.WriteLine("variable: " + line);
         }
         
 
@@ -42,15 +42,16 @@ public static class DotEnv
             
         foreach (var line in File.ReadAllLines(envFilePath))
         {
-            var parts = line.Split(
-                '=',
-                StringSplitOptions.RemoveEmptyEntries);
-
+            //Console.WriteLine(line);
+            // Ignore comments and empty lines
+            if (string.IsNullOrWhiteSpace(line) || line.TrimStart().StartsWith("#"))
+                continue;
+            var parts = line.Split('=', 2, StringSplitOptions.TrimEntries);
+            //Console.WriteLine($"key: {parts[0]}, value: {parts[1]}, length: {parts.Length}");
             if (parts.Length != 2)
                 continue;
 
-            Console.WriteLine("key: "+parts[0], "value: "+parts[1]);
-            Environment.SetEnvironmentVariable(parts[0].Trim(), parts[1].Trim());
+            Environment.SetEnvironmentVariable(parts[0], parts[1]);
         }
     }
 }
