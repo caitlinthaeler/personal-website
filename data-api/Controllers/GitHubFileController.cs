@@ -44,7 +44,7 @@ public class FileController : ControllerBase
             }
 
             var result = new { imageUrl };
-            Console.WriteLine(result);
+            //Console.WriteLine(result);
             
             return Ok(result);
         }

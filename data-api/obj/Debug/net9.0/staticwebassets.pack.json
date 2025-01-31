@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/index-D38YN5et.css",
+      "PackagePath": "staticwebassets/assets/index-D38YN5et.css"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/index-zYqMuEsR.js",
+      "PackagePath": "staticwebassets/assets/index-zYqMuEsR.js"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/placeholder-CDHBNI4r.png",
+      "PackagePath": "staticwebassets/assets/placeholder-CDHBNI4r.png"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/primeicons-C6QP2o4f.woff2",
+      "PackagePath": "staticwebassets/assets/primeicons-C6QP2o4f.woff2"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/primeicons-DMOk5skT.eot",
+      "PackagePath": "staticwebassets/assets/primeicons-DMOk5skT.eot"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/primeicons-Dr5RGzOO.svg",
+      "PackagePath": "staticwebassets/assets/primeicons-Dr5RGzOO.svg"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/primeicons-MpK4pl85.ttf",
+      "PackagePath": "staticwebassets/assets/primeicons-MpK4pl85.ttf"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/assets/primeicons-WjwUDZjB.woff",
+      "PackagePath": "staticwebassets/assets/primeicons-WjwUDZjB.woff"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.build.data-api.props",
+      "PackagePath": "build\\data-api.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.data-api.props",
+      "PackagePath": "buildMultiTargeting\\data-api.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.data-api.props",
+      "PackagePath": "buildTransitive\\data-api.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.data-api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.data-api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

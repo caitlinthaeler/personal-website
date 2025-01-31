@@ -66,20 +66,16 @@ onMounted(fetchImage);
             </div>
             <div class="grid grid-cols-2">
                 <div class="flex-1 flex-none">
-                    <div class="flex justify-end h-full">
-                        <div class="w-2/3 flex justify-center items-end">
-                            <p class="my-4 text-xl text-plum">
-                                
-                                If you've got the <span class="text-plum-light">vision</span>,<br> I've got the <span class="text-plum-light">code</span>.
-                            </p>
-                        </div>
+                    <div class="flex justify-end h-full items-center">
+                        <p class="my-4 text-xl text-plum">
+                            
+                            If you've got the <span class="text-plum-light">vision</span>,<br> I've got the <span class="text-plum-light">code</span>.
+                        </p>
                     </div>
                 </div>
-                <div class="flex-1 flex-none">
-                    <div class="flex justify-start h-full">
-                        <div class="w-2/3 flex justify-center items-end">
-                            <img :src="imageUrl" alt="Embdedded image" class="w-40 object-cover rounded-full">
-                        </div>
+                <div class="flex-1 flex-none ml-20">
+                    <div class="flex justify-start h-full items-center">
+                        <img :src="imageUrl" alt="Embdedded image" class="w-40 object-cover rounded-full">
                     </div>
                 </div>
                 <!-- <div class="flex-1 basis-1/3 flex-none">

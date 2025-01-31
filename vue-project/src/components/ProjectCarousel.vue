@@ -37,8 +37,8 @@ onMounted(async () => {
 </script>
 
 <template>
-                <Carousel :value="state.projects" :numVisible="3" :numScroll="1" circular :autplayInterval="3000"> 
     <section class="flex-1 bg-grape ">
+        <div class="mask-image relative overflow-hidden max-w-5xl w-[1200px] mx-auto justify-center">
             <!-- <div class="absolute inset-0 pointer-events-none z-10"
                 style="
                     -webkit-mask-image: linear-gradient(circle, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
@@ -58,7 +58,7 @@ onMounted(async () => {
                 >
                 <template #item="slotProps">
                     <div class="p-4">
-                        <img :src="slotProps.data.imageUrl" alt="Project Thumbnail" class="border-4 border-plum rounded-lg shadow-md">
+                        <img :src="slotProps.data.imageUrl" alt="Project Thumbnail" class="border-4 border-plum rounded-lg shadow-md h-[200px]">
                         <h3 class="text-lg font-semibold mt-2 text-center text-lemon">
                             {{ slotProps.data.title }}
                         </h3>

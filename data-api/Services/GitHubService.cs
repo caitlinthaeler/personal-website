@@ -14,44 +14,8 @@ public class GitHubService
     private readonly string _repo;
     public GitHubService(IConfiguration config)
     {
-         //Get the parent directory
-        //  string currentDirectory = Directory.GetCurrentDirectory();
-        //  string parentDirectory = Directory.GetParent(currentDirectory)?.FullName;
-
-        // if (string.IsNullOrEmpty(parentDirectory))
-        // {
-        //     throw new Exception("Failed to locate the parent directory.");
-        // }
-
-        //  string envFilePath = Path.Combine(parentDirectory, ".env");
-
-        // Console.WriteLine($"Resolved .env path: {envFilePath}");
-
-        // if (!File.Exists(envFilePath))
-        // {
-        //     throw new FileNotFoundException(".env file not found at: " + envFilePath);
-        // }
-        // string envContent = File.ReadAllText(envFilePath);
-        // Console.WriteLine("Contents of .env file:");
-        // Console.WriteLine(envContent);
-
-        // // Load the .env file
-        // DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] { envFilePath }));
-
-        // // Read environment variables
-        // var enVars = DotEnv.Read();
-
-        // // Print out all key-value pairs
-        // Console.WriteLine("Environment Variables Loaded:");
-        // foreach (var kvp in enVars)
-        // {
-        //     Console.WriteLine($"{kvp.Key} = {kvp.Value}");
-        // }
-
-        //var token = enVars.ContainsKey("GITHUB_TOKEN") ? enVars["GITHUB_TOKEN"] : null;
-
         var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
-        Console.WriteLine("GitHub Token Loaded: " + (!string.IsNullOrEmpty(token) ? "Yes" : "No"));
+        //Console.WriteLine("GitHub Token Loaded: " + (!string.IsNullOrEmpty(token) ? "Yes" : "No"));
 
         if (string.IsNullOrEmpty(token))
         {
@@ -93,7 +57,7 @@ public class GitHubService
     {
         try
         {
-            Console.WriteLine($"Fetching: owner={owner}, repo={repo}, path={filePath}, branch={branch}");
+            //Console.WriteLine($"Fetching: owner={owner}, repo={repo}, path={filePath}, branch={branch}");
             var fileContent = await _client.Repository.Content.GetRawContentByRef(owner, repo, filePath, branch);
             return fileContent;
         }

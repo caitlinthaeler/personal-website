@@ -44,3 +44,9 @@
 /Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/unit-testing-using-dotnet-test/PrimeService/obj/project.assets.json
 /Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/dotenv.net.dll
 /Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/Octokit.dll
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net9.0/data-api.staticwebassets.runtime.json
+/Users/caitlin/Documents/GitHub/personal-website/data-api/obj/Debug/net9.0/compressed/4qdzd16rgi-g38os45hhc.gz
+/Users/caitlin/Documents/GitHub/personal-website/data-api/obj/Debug/net9.0/compressed/5cgfxdmexd-0k281ga2n1.gz
+/Users/caitlin/Documents/GitHub/personal-website/data-api/obj/Debug/net9.0/compressed/2pvrxsybo0-uz8dw73o84.gz
+/Users/caitlin/Documents/GitHub/personal-website/data-api/obj/Debug/net9.0/compressed/mn1tu12brf-r8e75ffup4.gz
+/Users/caitlin/Documents/GitHub/personal-website/data-api/obj/Debug/net9.0/compressed/g1paus6q0g-cmvo4v6u0o.gz
