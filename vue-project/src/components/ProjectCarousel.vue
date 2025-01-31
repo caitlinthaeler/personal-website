@@ -4,6 +4,8 @@ import ProjectListing from '@/components/ProjectListing.vue'
 import { reactive, ref, defineProps, onMounted } from 'vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import Carousel from 'primevue/carousel';
+import { fetchImage } from '@/utils/fetchImage.js';
+import placeholderImage from '@/assets/img/placeholder.png'
 import axios from 'axios'
 
 defineProps({
@@ -12,13 +14,18 @@ defineProps({
 
 const state = reactive({
     projects: [],
+
     isLoading: true
 });
 
 onMounted(async () => {
     try {
         const response = await axios.get('http://localhost:5283/api/projects-collection/');
-        state.projects = formatProjectDates(response.data);
+        state.projects = await Promise.all(response.data.map(async (project) => {
+            project.imageUrl = await fetchImage(project.thumbnail);
+            return project;
+        }));
+        state.projects = response.data;
 
         console.log(state.projects);
     } catch (error){
@@ -30,13 +37,66 @@ onMounted(async () => {
 </script>
 
 <template>
-     <section class="flex-1 bg-grape-dark py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-                Carousel
-                <!-- put carousel with mask here -->
                 <Carousel :value="state.projects" :numVisible="3" :numScroll="1" circular :autplayInterval="3000"> 
-                    
-                </Carousel>
+    <section class="flex-1 bg-grape ">
+            <!-- <div class="absolute inset-0 pointer-events-none z-10"
+                style="
+                    -webkit-mask-image: linear-gradient(circle, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+                    mask-image: linear-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+                ">
+            </div> -->
+
+            <Carousel 
+                :value="state.projects" 
+                :numVisible="3" 
+                :numScroll="1"
+                :autoplay="true"
+                :circular="false"
+                :autoplayInterval="3000"
+                :dots="true"
+                class="relative z-10"
+                >
+                <template #item="slotProps">
+                    <div class="p-4">
+                        <img :src="slotProps.data.imageUrl" alt="Project Thumbnail" class="border-4 border-plum rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold mt-2 text-center text-lemon">
+                            {{ slotProps.data.title }}
+                        </h3>
+                    </div>
+                </template>
+                
+            </Carousel>
+        </div>
+        <div class="flex flex-col">
+            <div class="gap-5 justify-center text-center text-sm my-10">
+                    <RouterLink to="/projects" class="text-grape bg-lemon hover:bg-plum rounded-md px-3 py-2 mt-4"
+                    >View AllProjects</RouterLink>
             </div>
-        </section>
+        </div>
+        
+    </section>
 </template>
+
+<style scoped>
+.mask-image {
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 75%);
+}
+::v-deep(.p-carousel-prev),
+::v-deep(.p-carousel-next) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20; /* Ensure it's above the mask */
+}
+
+::v-deep(.p-carousel-prev) {
+    left: -50px; /* Move left arrow outside the mask */
+}
+
+::v-deep(.p-carousel-next) {
+    right: -50px; /* Move right arrow outside the mask */
+}
+
+</style>
+  
+  

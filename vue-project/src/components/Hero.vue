@@ -64,22 +64,29 @@ onMounted(fetchImage);
                 {{ title }}
             </h1>
             </div>
-            <div class="flex flex-row gap-5">
-                <div class="flex-1 basis-2/3 flex-none">
+            <div class="grid grid-cols-2">
+                <div class="flex-1 flex-none">
                     <div class="flex justify-end h-full">
-                        <div class="w-2/3 flex items-end">
+                        <div class="w-2/3 flex justify-center items-end">
                             <p class="my-4 text-xl text-plum">
-                                If you've got the <span class="text-plum-light">vision</span>, I've got the <span class="text-plum-light">code</span>.
-                        </p>
+                                
+                                If you've got the <span class="text-plum-light">vision</span>,<br> I've got the <span class="text-plum-light">code</span>.
+                            </p>
                         </div>
-                            
-                        
                     </div>
-                   
                 </div>
-                <div class="flex-1 flex justify-start items-center">
-                    <img :src="imageUrl" alt="Embdedded image" class="w-40 h- object-cover rounded-full">
+                <div class="flex-1 flex-none">
+                    <div class="flex justify-start h-full">
+                        <div class="w-2/3 flex justify-center items-end">
+                            <img :src="imageUrl" alt="Embdedded image" class="w-40 object-cover rounded-full">
+                        </div>
+                    </div>
                 </div>
+                <!-- <div class="flex-1 basis-1/3 flex-none">
+                    <div class="flex justify-center h-full">
+                        <img :src="imageUrl" alt="Embdedded image" class="w-40 object-cover rounded-full">
+                    </div>
+                </div> -->
                 
             </div>
             <div class="flex flex-col gap-5 md:flex-row justify-center text-center text-sm">

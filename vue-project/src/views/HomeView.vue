@@ -4,7 +4,7 @@ import ProjectCarousel from '@/components/ProjectCarousel.vue'
 </script>
 
 <template>
-    <div class="flex flex-col px-10 gap-10 py-5">
+    <div class="flex flex-col px-10 gap-10 py-5 bg-grape">
         <Hero />
         <ProjectCarousel />
     </div>
