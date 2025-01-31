@@ -3,8 +3,8 @@ using data_api.Models;
 using data_api.Utils;
 
 string root = Directory.GetCurrentDirectory();
-string dotenv = Path.Combine(root, ".env");
-DotEnv.Load(dotenv);
+//string dotenv = Path.Combine(root, ".env");
+DotEnv.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 var AllowedOrigins = builder.Configuration.GetSection("AllowedCorsOrigins").Get<string[]>();

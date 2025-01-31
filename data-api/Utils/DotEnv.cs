@@ -4,54 +4,44 @@ using System.IO;
 
 public static class DotEnv
 {
-    public static void Load(string filePath)
+    public static void Load()
     {
-        //Get the parent directory
-         string currentDirectory = Directory.GetCurrentDirectory();
-         string parentDirectory = Directory.GetParent(currentDirectory)?.FullName;
+        // 1️⃣ Check if an explicit .env path is set via environment variable
+        string envFilePath = Environment.GetEnvironmentVariable("DOTENV_PATH");
 
-        if (string.IsNullOrEmpty(parentDirectory))
+        if (string.IsNullOrEmpty(envFilePath))
         {
-            throw new Exception("Failed to locate the parent directory.");
+            // 2️⃣ If not set, fall back to the parent directory of the current working directory
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string parentDirectory = Directory.GetParent(currentDirectory)?.FullName;
+            
+            if (string.IsNullOrEmpty(parentDirectory))
+            {
+                throw new Exception("Failed to locate the parent directory.");
+            }
+
+            envFilePath = Path.Combine(parentDirectory, ".env");
         }
 
-         string envFilePath = Path.Combine(parentDirectory, ".env");
-
-        //Console.WriteLine($"Resolved .env path: {envFilePath}");
+        Console.WriteLine($"Resolved .env path: {envFilePath}");
 
         if (!File.Exists(envFilePath))
         {
-            throw new FileNotFoundException(".env file not found at: " + envFilePath);
+            throw new FileNotFoundException($".env file not found at: {envFilePath}");
         }
-        string envContent = File.ReadAllText(envFilePath);
-        //Console.WriteLine("Contents of .env file:");
-        //Console.WriteLine(envContent);
 
         foreach (var line in File.ReadAllLines(envFilePath))
         {
-            //Console.WriteLine("variable: " + line);
-        }
-        
-
-        // Console.WriteLine("loading variables at " + filePath);
-        // if (!File.Exists(filePath)){
-        //      Console.WriteLine("file doesn't exist at " + filePath);
-        //     return;
-
-        // }
-            
-        foreach (var line in File.ReadAllLines(envFilePath))
-        {
-            //Console.WriteLine(line);
-            // Ignore comments and empty lines
             if (string.IsNullOrWhiteSpace(line) || line.TrimStart().StartsWith("#"))
                 continue;
+
             var parts = line.Split('=', 2, StringSplitOptions.TrimEntries);
-            //Console.WriteLine($"key: {parts[0]}, value: {parts[1]}, length: {parts.Length}");
             if (parts.Length != 2)
                 continue;
 
             Environment.SetEnvironmentVariable(parts[0], parts[1]);
         }
+
+        Console.WriteLine("Environment variables loaded successfully.");
     }
 }
