@@ -1,5 +1,3 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 namespace data_api.Models;
 public class Image
 {
@@ -8,5 +6,4 @@ public class Image
     public int Size { get; set; } = 0;
     public string Name { get; set; } = null!;
     public string Download_url { get; set; } = null!;
-    public string Url { get; set; } = null!;
 }

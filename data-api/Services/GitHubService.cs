@@ -9,35 +9,21 @@ namespace data_api.Services;
 public class GitHubService
 {
     private readonly GitHubClient _client;
-    private readonly string _baseUrl;
     private readonly string _owner;
     private readonly string _repo;
-    public GitHubService(IConfiguration config)
+    public GitHubService(GitHubClient client, string token, string owner, string repo)
     {
-        var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+        //var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
         //Console.WriteLine("GitHub Token Loaded: " + (!string.IsNullOrEmpty(token) ? "Yes" : "No"));
-
         if (string.IsNullOrEmpty(token))
         {
             throw new InvalidOperationException("GitHub AccessToken is not configured");
         }
-        _client = new GitHubClient(new ProductHeaderValue("data-api"));
+        _client = client;
         _client.Credentials = new Credentials(token);
-        _owner = config["GitHub:Owner"];
-        _repo = config["GitHub:RepositoryName"];
-    }
-
-    public async Task<string> GetFileAsync(string owner, string repo, string filePath, string branch = "main")
-    {
-        try
-        {
-            var file = await _client.Repository.Content.GetAllContentsByRef(owner, repo, filePath, branch);
-            return file[0].Content; // Decode base64 content if needed
-        }
-        catch (Exception ex)
-        {
-            throw new InvalidOperationException("Error fetching file contents", ex);
-        }
+        _owner = owner;
+        _repo = repo;
+       
     }
 
     public async Task<string> GetFileAsync(string filePath, string branch = "main")
@@ -81,6 +67,19 @@ public class GitHubService
         {
             var file = await _client.Repository.Content.GetAllContentsByRef(owner, repo, filePath, "main");
             return file[0].DownloadUrl; // Decode base64 content if needed
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException("Error fetching file contents", ex);
+        }
+    }
+
+    public async Task<IReadOnlyList<RepositoryContent>> GetImage(string owner, string repo, string filePath, string branch="main")
+    {
+        try
+        {
+            var fileData = await _client.Repository.Content.GetAllContentsByRef(owner, repo, filePath, branch);
+            return fileData; // Decode base64 content if needed
         }
         catch (Exception ex)
         {

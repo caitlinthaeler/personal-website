@@ -12,10 +12,9 @@ public class MongoDBService
 
     
 
-    public MongoDBService(IConfiguration config)
+    public MongoDBService(string MongoConnectionKey, string databaseName)
     {
         //connect to mongodb
-        var MongoConnectionKey = "MONGO_URI";
         var connectionString = Environment.GetEnvironmentVariable(MongoConnectionKey);
         if (string.IsNullOrEmpty(connectionString))
         {
@@ -23,7 +22,6 @@ public class MongoDBService
         }
 
         //connect to database
-        var databaseName = config["MongoDB:DatabaseName"];
         if (string.IsNullOrEmpty(databaseName))
         {
             throw new InvalidOperationException("DatabaseName is not configured");
