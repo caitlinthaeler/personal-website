@@ -1,11 +1,11 @@
 using data_api.Services;
-using data_api.Models;
 using data_api.Utils;
 
 DotEnv.Load();  // No need to pass filePath anymore
 
 var builder = WebApplication.CreateBuilder(args);
-var AllowedOrigins = builder.Configuration.GetSection("AllowedCorsOrigins").Get<string[]>();
+var config = builder.Configuration;
+var AllowedOrigins = config.GetSection("AllowedCorsOrigins").Get<string[]>();
 var AllowOriginsPolicyName = "AllowOrigins";
 builder.Services.AddCors(options =>
 {
@@ -20,40 +20,25 @@ builder.Services.AddCors(options =>
         }
     );
 });
-// Add services to the container.
-//builder.Services.AddSingleton<WeatherService>();
-//builder.Services.AddSingleton<TestService>();
 
-var databaseName = builder.Configuration["MongoDB:DatabaseName"];
-var mongoConfig = builder.Configuration.GetSection("MongoDB:Collections");
-var collections = mongoConfig.Get<List<Dictionary<string, string>>>();
-// Register MongoDB service for each collection dynamically
-foreach (var collection in collections)
+
+
+builder.Services.AddSingleton(serviceProvider =>
 {
-    var collectionName = collection["collectionName"];
-    var modelType = Type.GetType($"data_api.Models.{collection["modelType"]}");
-    if (modelType == null)
-    {
-        throw new InvalidOperationException($"Model type '{modelType}' not found.");
-    }
-    
-    builder.Services.AddSingleton(
-        typeof(IDataService<>).MakeGenericType(modelType),
-        sp =>
-        {
-            // Create an instance of MongoDBService<T> for the modelType
-            var serviceType = typeof(MongoDBService<>).MakeGenericType(modelType);
-            return ActivatorUtilities.CreateInstance(
-                sp,
-                serviceType,
-                databaseName,
-                collectionName
-            );
-        } 
-    );
-}
+    var clientName = "data-api";
+    var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+    var owner = config["GitHub:Owner"];
+    var repo = config["GitHub:RepositoryName"];
+    return new GitHubService(clientName, token, owner, repo);
+});
 
-builder.Services.AddSingleton<GitHubService>();
+
+builder.Services.AddSingleton(serviceProvider => 
+{
+    var databaseName = config["MongoDB:DatabaseName"];
+    var mongoUri = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+    return new MongoDBService(databaseName, mongoUri);
+});
 
 builder.Services.AddControllers();
 

@@ -1,9 +1,13 @@
+using System.Text.Json.Serialization;
+
 namespace data_api.Models;
 public class Image
 {
-    
-    public string Type { get; set; } = null!;
+
+    [JsonPropertyName("name")]
+    public string FilePath { get; set; } = string.Empty!;
+    [JsonPropertyName("size")]
     public int Size { get; set; } = 0;
-    public string Name { get; set; } = null!;
-    public string Download_url { get; set; } = null!;
+    [JsonPropertyName("fileType")]
+    public string FileType { get; set; } = null!;
 }

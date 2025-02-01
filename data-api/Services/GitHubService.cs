@@ -1,8 +1,7 @@
-using Microsoft.Extensions.Configuration;
-using System;
 using Octokit;
-using System.Threading.Tasks;
-using dotenv.net;
+using System.Collections.Concurrent;
+using Microsoft.AspNetCore.Mvc;
+using data_api.Models;
 
 namespace data_api.Services;
 
@@ -11,7 +10,9 @@ public class GitHubService
     private readonly GitHubClient _client;
     private readonly string _owner;
     private readonly string _repo;
-    public GitHubService(GitHubClient client, string token, string owner, string repo)
+    private readonly ConcurrentDictionary<string, byte[]> _cache;
+
+    public GitHubService(string clientName, string token, string owner, string repo)
     {
         //var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
         //Console.WriteLine("GitHub Token Loaded: " + (!string.IsNullOrEmpty(token) ? "Yes" : "No"));
@@ -19,15 +20,16 @@ public class GitHubService
         {
             throw new InvalidOperationException("GitHub AccessToken is not configured");
         }
-        _client = client;
+        _client = new GitHubClient(new ProductHeaderValue(clientName));
         _client.Credentials = new Credentials(token);
         _owner = owner;
         _repo = repo;
-       
+        _cache = new ConcurrentDictionary<string, byte[]>();
     }
 
     public async Task<string> GetFileAsync(string filePath, string branch = "main")
     {
+        
         try
         {
             var file = await _client.Repository.Content.GetAllContentsByRef(_owner, _repo, filePath, branch);
@@ -74,6 +76,30 @@ public class GitHubService
         }
     }
 
+    public async Task<Image?> GetImageMetadataAsync(string filePath)
+    {
+        try
+        {
+            var file = await _client.Repository.Content.GetAllContentsByRef(_owner, _repo, filePath, "main");
+            if (file is { Count: > 0})
+            {
+                var content = file[0];
+
+                return new Image
+                {
+                    FilePath = filePath,
+                    Size = content.Size,
+                    FileType = "image",
+                };
+            }
+        }
+        catch (NotFoundException)
+        {
+            return null;
+        }
+        return null;
+    }
+
     public async Task<IReadOnlyList<RepositoryContent>> GetImage(string owner, string repo, string filePath, string branch="main")
     {
         try
@@ -85,6 +111,41 @@ public class GitHubService
         {
             throw new InvalidOperationException("Error fetching file contents", ex);
         }
+    }
+
+    public async Task<IActionResult> GetFileFromGitHub(string filePath)
+    {
+        string cacheKey = $"{_repo}/{filePath}";
+        if (_cache.ContainsKey(cacheKey)){
+            return new FileContentResult(_cache[cacheKey],"image/png");
+        }
+        try
+        {
+            //check if the path is available
+            var file = await _client.Repository.Content.GetAllContentsByRef(_owner, _repo, filePath, "main");
+
+            // If file is found, fetch the content
+            if (file != null && file.Count > 0)
+            {
+                var content = file[0];
+                var downloadUrl = content.DownloadUrl;
+                var fileContent = await _client.Repository.Content.GetRawContentByRef(_owner, _repo, filePath, "main");
+
+                _cache[cacheKey] = fileContent;
+
+                return new FileContentResult(fileContent, "image/png");
+            }
+            else
+            {
+                return new NotFoundResult();
+            }
+        }
+        catch (Exception)
+        {
+            return new NotFoundResult();
+        }
+        
+
     }
 
 }

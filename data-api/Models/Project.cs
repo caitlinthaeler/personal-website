@@ -36,6 +36,7 @@ public class Project
     public List<string> Media { get; set; } = new List<string>();
 
     [BsonElement("thumbnail")]
-    public string Thumbnail { get; set; } = null!;
+    [BsonSerializer(typeof(ThumbnailSerializer))]
+    public Image Thumbnail { get; set; } = null!;
 
 }

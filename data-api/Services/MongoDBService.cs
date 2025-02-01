@@ -1,16 +1,12 @@
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using data_api.Models;
+using data_api.Services;
 
 namespace data_api.Services;
 public class MongoDBService
 {
     private readonly IMongoCollection<Project> _projectsCollection;
     private readonly IMongoCollection<Skill> _skillsCollection;
-
-    
 
     public MongoDBService(string MongoConnectionKey, string databaseName)
     {
@@ -36,14 +32,8 @@ public class MongoDBService
         _skillsCollection = database.GetCollection<Skill>(skillsCollection);
     }
 
-    public async Task<List<Project>> GetProjectsAsync()
-    {
-        return await _projectsCollection.Find(_ => true).ToListAsync();
-    }
+    public async Task<List<Project>> GetProjectsAsync() => await _projectsCollection.Find(_ => true).ToListAsync();
 
-    public async Task<List<Skill>> GetSkillsAsync()
-    {
-        return await _skillsCollection.Find(_ => true).ToListAsync();
-    }
+    public async Task<List<Skill>> GetSkillsAsync() => await _skillsCollection.Find(_ => true).ToListAsync();
 }
 
