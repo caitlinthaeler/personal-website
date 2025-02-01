@@ -2,50 +2,50 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using data_api.Models;
 
 namespace data_api.Services;
-public class MongoDBService<T> : IDataService<T> where T : class
+public class MongoDBService
 {
-    private readonly IMongoCollection<T> _collection;
+    private readonly IMongoCollection<Project> _projectsCollection;
+    private readonly IMongoCollection<Skill> _skillsCollection;
 
-    public MongoDBService(string databaseName, string collectionName)
+    
+
+    public MongoDBService(IConfiguration config)
     {
-        var connectionString = Environment.GetEnvironmentVariable("MONGO_URI");
+        //connect to mongodb
+        var MongoConnectionKey = "MONGO_URI";
+        var connectionString = Environment.GetEnvironmentVariable(MongoConnectionKey);
         if (string.IsNullOrEmpty(connectionString))
         {
             throw new InvalidOperationException("MONGO_URI is not configured");
         }
+
+        //connect to database
+        var databaseName = config["MongoDB:DatabaseName"];
+        if (string.IsNullOrEmpty(databaseName))
+        {
+            throw new InvalidOperationException("DatabaseName is not configured");
+        }
         var client = new MongoClient(connectionString);
         var database = client.GetDatabase(databaseName);
-        _collection = database.GetCollection<T>(collectionName);
+        
+        //assign routes to collections
+        var projectCollection = "projects";
+        var skillsCollection = "skills";
+        _projectsCollection = database.GetCollection<Project>(projectCollection);
+        _skillsCollection = database.GetCollection<Skill>(skillsCollection);
     }
 
-    public async Task<List<T>> GetAllDataAsync()
+    public async Task<List<Project>> GetProjectsAsync()
     {
-        return await _collection.Find(_ => true).ToListAsync();
+        return await _projectsCollection.Find(_ => true).ToListAsync();
     }
 
-    public async Task<T> GetDataByIdAsync(string id)
+    public async Task<List<Skill>> GetSkillsAsync()
     {
-        var filter = Builders<T>.Filter.Eq("Id", id);
-        return await _collection.Find(filter).FirstOrDefaultAsync();
-    }
-    
-    public async Task CreateDataAsync(T data)
-    {
-        await _collection.InsertOneAsync(data);
-    }
-
-    public async Task UpdateDataAsync(string id, T data)
-    {
-        var filter = Builders<T>.Filter.Eq("Id", id);
-        await _collection.ReplaceOneAsync(filter, data);
-    }
-
-    public async Task DeleteDataAsync(string id)
-    {
-        var filter =  Builders<T>.Filter.Eq("Id", id);
-        await _collection.DeleteOneAsync(filter);
+        return await _skillsCollection.Find(_ => true).ToListAsync();
     }
 }
 
