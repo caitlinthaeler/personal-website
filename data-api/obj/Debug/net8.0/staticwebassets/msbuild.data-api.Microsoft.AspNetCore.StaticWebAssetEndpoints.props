@@ -96,6 +96,30 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-9dHSGV4FuAhZU6p9ULLncHDNESDgEAqGAHcapboRoB4="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"85056"},{"Name":"Content-Type","Value":"application/font-woff"},{"Name":"ETag","Value":"\u00229dHSGV4FuAhZU6p9ULLncHDNESDgEAqGAHcapboRoB4=\u0022"},{"Name":"Last-Modified","Value":"Fri, 31 Jan 2025 07:45:43 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/data-api/data/projects.json">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\data\projects.json'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-/X/C2lpWmogGiMZgpRsNuo\u002BxNIkNARflb2FWQ5bHocg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2444"},{"Name":"Content-Type","Value":"application/json"},{"Name":"ETag","Value":"\u0022/X/C2lpWmogGiMZgpRsNuo\u002BxNIkNARflb2FWQ5bHocg=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Feb 2025 20:27:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/data-api/data/projects.plrhakswzk.json">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\data\projects.json'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"plrhakswzk"},{"Name":"integrity","Value":"sha256-/X/C2lpWmogGiMZgpRsNuo\u002BxNIkNARflb2FWQ5bHocg="},{"Name":"label","Value":"_content/data-api/data/projects.json"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2444"},{"Name":"Content-Type","Value":"application/json"},{"Name":"ETag","Value":"\u0022/X/C2lpWmogGiMZgpRsNuo\u002BxNIkNARflb2FWQ5bHocg=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Feb 2025 20:27:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/data-api/data/skills.json">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\data\skills.json'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1090"},{"Name":"Content-Type","Value":"application/json"},{"Name":"ETag","Value":"\u0022gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Feb 2025 20:27:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/data-api/data/skills.thgwy5ag8k.json">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\data\skills.json'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"thgwy5ag8k"},{"Name":"integrity","Value":"sha256-gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0="},{"Name":"label","Value":"_content/data-api/data/skills.json"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1090"},{"Name":"Content-Type","Value":"application/json"},{"Name":"ETag","Value":"\u0022gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Feb 2025 20:27:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/data-api/favicon.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

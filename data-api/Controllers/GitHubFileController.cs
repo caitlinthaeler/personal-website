@@ -15,20 +15,20 @@ public class FileController : ControllerBase
         _gitHubService = gitHubService;
     }
 
-    [HttpGet("content/{*filePath}")]
-    public async Task<IActionResult> GetFileContent(string owner, string repo, string filePath)
-    {
-        try
-        {
-            var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
+    // [HttpGet("content/{*filePath}")]
+    // public async Task<IActionResult> GetFileContent(string owner, string repo, string filePath)
+    // {
+    //     try
+    //     {
+    //         var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
             
-            return Ok(new  { content });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new {error = ex.Message});
-        }
-    }
+    //         return Ok(new  { content });
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return BadRequest(new {error = ex.Message});
+    //     }
+    // }
 
     [HttpGet("image/{*filePath}")]
     public async Task<IActionResult> GetImageUrl(string owner, string repo, string filePath)
@@ -55,28 +55,28 @@ public class FileController : ControllerBase
     }
 
 
-    [HttpGet("file/{*filePath}")]
-    public async Task<IActionResult> GetFile(string owner, string repo, string filePath)
-    {
-        try
-        {
-            var result = new Dictionary<string, object>();
+    // [HttpGet("file/{*filePath}")]
+    // public async Task<IActionResult> GetFile(string owner, string repo, string filePath)
+    // {
+    //     try
+    //     {
+    //         var result = new Dictionary<string, object>();
 
-            var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
-            result["content"] = content;
+    //         var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
+    //         result["content"] = content;
 
-            var imageUrl = await _gitHubService.GetImageUrlAsync(owner, repo, filePath);
-            if (!string.IsNullOrEmpty(imageUrl))
-            {
-                result["imageUrl"] = imageUrl;
-            }   
+    //         var imageUrl = await _gitHubService.GetImageUrlAsync(owner, repo, filePath);
+    //         if (!string.IsNullOrEmpty(imageUrl))
+    //         {
+    //             result["imageUrl"] = imageUrl;
+    //         }   
 
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
-    }
+    //         return Ok(result);
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return BadRequest(new { error = ex.Message });
+    //     }
+    // }
 
 }

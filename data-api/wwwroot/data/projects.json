@@ -1,0 +1,100 @@
+{
+  "Sk8 Run": {
+    "id": "6792f646fd00290dbff739d3",
+    "title": "Sk8 Run",
+    "description": "2D skate-racing platformer inspired by the anime SK8 infinite. The game is still being developed.",
+    "startDate": "2024-08-01T00:00:00Z",
+    "endDate": null,
+    "skills": [
+      "C#",
+      "Unity",
+      "Visual Studio"
+    ],
+    "githubLink": "https://github.com/caitlinthaeler/Sk8-Run-Project.git",
+    "hasLiveDemo": true,
+    "media": [
+      "4",
+      "5"
+    ],
+    "thumbnail": {
+      "filePath": "sk8-run/thumbnail.png",
+      "size": 0,
+      "fileType": null
+    }
+  },
+  "Personal Website": {
+    "id": "67931b82fd00290dbff739d4",
+    "title": "Personal Website",
+    "description": "Digital portfolio containing my projects, experiences, resume, and socials all in one place.",
+    "startDate": "2025-01-01T00:00:00Z",
+    "endDate": null,
+    "skills": [
+      "Vue.js",
+      "JavaScript",
+      "Visual Studio Code",
+      "MongoDB",
+      "CSS",
+      "RESTful API",
+      "C#",
+      "GitHub"
+    ],
+    "githubLink": "https://github.com/caitlinthaeler/personal-website.git",
+    "hasLiveDemo": true,
+    "media": [
+      "6",
+      "7"
+    ],
+    "thumbnail": {
+      "filePath": "ui/website-thumbnail.png",
+      "size": 0,
+      "fileType": null
+    }
+  },
+  "Kessler Syndrome": {
+    "id": "67931ba8fd00290dbff739d5",
+    "title": "Kessler Syndrome",
+    "description": "The player must maneuver through a thick layer of space junk to reach Earth. The game was developed with Unity2D and Visual Studio.",
+    "startDate": "2024-09-04T00:00:00Z",
+    "endDate": "2024-09-08T00:00:00Z",
+    "skills": [
+      "C#",
+      "Unity",
+      "Visual Studio"
+    ],
+    "githubLink": "https://github.com/caitlinthaeler/nyskooo.git",
+    "hasLiveDemo": true,
+    "media": [
+      "2",
+      "3"
+    ],
+    "thumbnail": {
+      "filePath": "kessler-syndrome/easy-mode.png",
+      "size": 0,
+      "fileType": null
+    }
+  },
+  "Rogue Cat": {
+    "id": "67936e6cfd00290dbff739d8",
+    "title": "Rogue Cat",
+    "description": "2D sandbox game developed with Unity2D and Visual Studio.",
+    "startDate": "2019-09-01T00:00:00Z",
+    "endDate": "2021-11-01T00:00:00Z",
+    "skills": [
+      "C#",
+      "Unity",
+      "Visual Studio",
+      "Aseprite"
+    ],
+    "githubLink": "",
+    "hasLiveDemo": true,
+    "media": [
+      "0",
+      "1"
+    ],
+    "thumbnail": {
+      "filePath": "rogue-cat/Screen Shot 2023-06-17 at 11.36.30 AM.png",
+      "size": 0,
+      "fileType": null
+    }
+  }
+}

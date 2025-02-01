@@ -1,0 +1,45 @@
+{
+  "C#": {
+    "Id": "678da921ffcfb4ec29aa304e",
+    "name": "C#",
+    "description": "Multi paradigm high level programming language. Used for dotnet development and Unity scripting..",
+    "categories": [
+      "Programming Language"
+    ]
+  },
+  "Python": {
+    "Id": "678da9cbffcfb4ec29aa304f",
+    "name": "Python",
+    "description": "Versatile and efficient high level language",
+    "categories": [
+      "Pogramming Language"
+    ]
+  },
+  "Unity": {
+    "Id": "678dab77ffcfb4ec29aa3050",
+    "name": "Unity",
+    "description": "Cross-platform game engine",
+    "categories": [
+      "Game Engine",
+      "Game Development"
+    ]
+  },
+  "Vue.js": {
+    "Id": "678dad40ffcfb4ec29aa3052",
+    "name": "Vue.js",
+    "description": "Front-end JavaScript framework for building user interfaces and SPA applications.",
+    "categories": [
+      "Front-end",
+      "Web Development"
+    ]
+  },
+  "Visual Studio": {
+    "Id": "67900bb7f5dbd50428b12ad8",
+    "name": "Visual Studio",
+    "description": "IDE and code editor for developing apps",
+    "categories": [
+      "Code Editor",
+      "Integrated Development Environment"
+    ]
+  }
+}

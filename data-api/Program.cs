@@ -32,13 +32,16 @@ builder.Services.AddSingleton(serviceProvider =>
     return new GitHubService(clientName, token, owner, repo);
 });
 
-
 builder.Services.AddSingleton(serviceProvider => 
 {
     var databaseName = config["MongoDB:DatabaseName"];
-    var mongoUri = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
-    return new MongoDBService(databaseName, mongoUri);
+    var connectionString = Environment.GetEnvironmentVariable("MONGO_URI");
+    var gitHubService = serviceProvider.GetRequiredService<GitHubService>();
+    return new MongoDBService(databaseName, connectionString);
 });
+
+builder.Services.AddSingleton<JsonFileService>();
+builder.Services.AddSingleton<UpdateService>();
 
 builder.Services.AddControllers();
 
@@ -56,6 +59,7 @@ builder.Services.AddSwaggerGen(options =>
 
 
 var app = builder.Build();
+await app.Services.GetRequiredService<UpdateService>().UpdateDataAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

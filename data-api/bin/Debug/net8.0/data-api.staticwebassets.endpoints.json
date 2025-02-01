@@ -659,6 +659,170 @@
       ]
     },
     {
+      "Route": "data/projects.json",
+      "AssetFile": "data/projects.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2444"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/X/C2lpWmogGiMZgpRsNuo+xNIkNARflb2FWQ5bHocg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Feb 2025 20:27:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/X/C2lpWmogGiMZgpRsNuo+xNIkNARflb2FWQ5bHocg="
+        }
+      ]
+    },
+    {
+      "Route": "data/projects.plrhakswzk.json",
+      "AssetFile": "data/projects.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2444"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/X/C2lpWmogGiMZgpRsNuo+xNIkNARflb2FWQ5bHocg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Feb 2025 20:27:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "plrhakswzk"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/X/C2lpWmogGiMZgpRsNuo+xNIkNARflb2FWQ5bHocg="
+        },
+        {
+          "Name": "label",
+          "Value": "data/projects.json"
+        }
+      ]
+    },
+    {
+      "Route": "data/skills.json",
+      "AssetFile": "data/skills.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1090"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Feb 2025 20:27:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0="
+        }
+      ]
+    },
+    {
+      "Route": "data/skills.thgwy5ag8k.json",
+      "AssetFile": "data/skills.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1090"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Feb 2025 20:27:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "thgwy5ag8k"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gVE2X/gtXE9/31hd6hYicP9e9IQ2xAspiWg1uDD6NQ0="
+        },
+        {
+          "Name": "label",
+          "Value": "data/skills.json"
+        }
+      ]
+    },
+    {
       "Route": "favicon.ico",
       "AssetFile": "favicon.ico",
       "Selectors": [],

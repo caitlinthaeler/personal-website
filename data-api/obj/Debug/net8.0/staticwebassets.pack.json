@@ -33,6 +33,14 @@
       "PackagePath": "staticwebassets/assets/primeicons-WjwUDZjB.woff"
     },
     {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/data/projects.json",
+      "PackagePath": "staticwebassets/data/projects.json"
+    },
+    {
+      "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/data/skills.json",
+      "PackagePath": "staticwebassets/data/skills.json"
+    },
+    {
       "Id": "/Users/caitlin/Documents/GitHub/personal-website/data-api/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },
