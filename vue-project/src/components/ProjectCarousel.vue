@@ -5,6 +5,7 @@ import { reactive, ref, defineProps, onMounted } from 'vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import Carousel from 'primevue/carousel';
 import { fetchImage } from '@/utils/fetchImage.js';
+import { fetchJson } from '@/utils/fetchJson.js';
 import placeholderImage from '@/assets/img/placeholder.png'
 import axios from 'axios'
 
@@ -14,26 +15,40 @@ defineProps({
 
 const state = reactive({
     projects: [],
-
     isLoading: true
 });
 
-onMounted(async () => {
-    try {
-        const response = await axios.get('http://localhost:5283/api/projects-collection/');
-        state.projects = await Promise.all(response.data.map(async (project) => {
-            project.imageUrl = await fetchImage(project.thumbnail);
-            return project;
-        }));
-        state.projects = response.data;
 
-        console.log(state.projects);
-    } catch (error){
-        console.error('Error fetching projects', error);
-    } finally {
-        state.isLoading = false;
+
+const fetchProjects = async () => {
+    try {
+        const response = await fetchJson('projects.json');
+        console.log("projects response", response);
+        if (response){
+            const projectsData = await Promise.all(Object.keys(response).map(async (key) => {
+                const project = response[key];
+                
+                // Assuming you have a function `fetchThumbnail` that gets the thumbnail for each project
+                const thumbnail = await fetchImage(project.thumbnail.filePath);  // Example URL for the thumbnail
+                return {
+                    ...project,
+                    imageUrl: thumbnail
+                };
+            }));
+            state.projects = projectsData;
+            console.log(state.imageUrls);
+        } else {
+          console.error('Couldn\'t find that file');
+        }
+        
+    } catch (error) {
+        console.error('Error loading JSON files:', error);
+    } finally{
+      state.isLoading = false;
     }
-});
+};
+
+onMounted(fetchProjects);
 </script>
 
 <template>

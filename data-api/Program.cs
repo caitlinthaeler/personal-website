@@ -8,7 +8,7 @@ var config = builder.Configuration;
 var AllowedOrigins = new string[]
 {
     "http://localhost:3000", // For local development
-    "htts://localhost:3000",
+    "https://localhost:3000",
     "https://caitlinthaeler.com" // For production
 };
 

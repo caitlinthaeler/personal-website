@@ -18,3 +18,4 @@ app.use(Toast);
 app.use(PrimeVue);
 
 app.mount('#app')
+console.log(import.meta.env);

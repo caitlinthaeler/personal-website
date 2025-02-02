@@ -1,15 +1,21 @@
 import axios from 'axios';
 import placeholderImage from '@/assets/img/placeholder.png';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+console.warn('No image url specified');
 export const fetchImage = async (filePath) => {
     if (!filePath) {
-        console.warn('No image url specified');
+        
         return placeholderImage;
     }
     try {
         const encodedImage = encodeURIComponent(filePath);
         //http://localhost:5283/api/image/
-        const response = await axios.get(`/api/image/${encodedImage}`,{
+        
+        console.log("image url: ", apiUrl);
+        console.log("all meta env data:", import.meta.env); // Log all environment variables
+
+        const response = await axios.get(`${apiUrl}/api/image/${encodedImage}`,{
             responseType: 'arraybuffer'
         });
 
