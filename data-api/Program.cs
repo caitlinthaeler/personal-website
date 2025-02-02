@@ -73,8 +73,8 @@ app.UseHttpsRedirection();
 
 app.UseCors(AllowOriginsPolicyName);
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
+// app.UseDefaultFiles();
+// app.UseStaticFiles();
 
 app.UseRouting();
 
