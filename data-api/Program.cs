@@ -58,7 +58,6 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-
 var app = builder.Build();
 await app.Services.GetRequiredService<UpdateService>().UpdateDataAsync();
 
@@ -75,14 +74,10 @@ app.UseHttpsRedirection();
 // app.UseCors(AllowOriginsPolicyName);
 app.UseCors("AllowSpecificOrigins");
 
-// app.UseDefaultFiles();
-// app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllers();
-//app.MapFallbackToFile("index.html");
 
 app.Run();
