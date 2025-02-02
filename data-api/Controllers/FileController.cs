@@ -28,6 +28,7 @@ public class FileController : ControllerBase
     {
         try
         {
+            Console.WriteLine("found the route for image: "+filePath);
             filePath = Uri.UnescapeDataString(filePath);
             //_logger.LogInformation("Requested file path: {FilePath}", filePath); // Log information
             // Assuming GetFileAsync returns an object with file metadata, including the URL
