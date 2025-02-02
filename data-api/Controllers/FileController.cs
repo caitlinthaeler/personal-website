@@ -9,43 +9,36 @@ namespace data_api.Controllers;
 public class FileController : ControllerBase
 {
     private readonly GitHubService _gitHubService;
+    private readonly ILogger<FileController> _logger; // Add a logger field
 
-    public  FileController(GitHubService gitHubService)
+    // Inject ILogger and GitHubService in the constructor
+    public FileController(GitHubService gitHubService, ILogger<FileController> logger)
     {
         _gitHubService = gitHubService;
+        _logger = logger;  // Initialize the logger
     }
-
-    // [HttpGet("content/{*filePath}")]
-    // public async Task<IActionResult> GetFileContent(string owner, string repo, string filePath)
-    // {
-    //     try
-    //     {
-    //         var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
-            
-    //         return Ok(new  { content });
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         return BadRequest(new {error = ex.Message});
-    //     }
-    // }
 
     [HttpGet("image/{*filePath}")]
     public async Task<IActionResult> GetImageUrl(string filePath)
     {
         try
         {
+            filePath = Uri.UnescapeDataString(filePath);
+            _logger.LogInformation("Requested file path: {FilePath}", filePath); // Log information
             // Assuming GetFileAsync returns an object with file metadata, including the URL
             var imageResult = await _gitHubService.GetFileFromGitHub(filePath);
             
              if (imageResult is FileContentResult fileContentResult)
             {
+                _logger.LogInformation("Image found: {FilePath}", filePath);
                 return fileContentResult; // Directly return the file content
             }
+            _logger.LogWarning("Image not found for path: {FilePath}", filePath); // Log a warning
             return NotFound(new { error = "Image not found" } );
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error while processing image request."); // Log an error with exception
             return BadRequest(new { error = ex.Message } );
         }
     }
@@ -55,7 +48,8 @@ public class FileController : ControllerBase
     {
         try
         {
-            string filePath = Path.Combine("resources", "json", fileName);
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = Path.Combine(basePath, "resources", "json", fileName);
 
             if (!System.IO.File.Exists(filePath))
             {
@@ -70,30 +64,5 @@ public class FileController : ControllerBase
             return BadRequest(new { error = ex.Message });
         }
     }
-
-
-    // [HttpGet("file/{*filePath}")]
-    // public async Task<IActionResult> GetFile(string owner, string repo, string filePath)
-    // {
-    //     try
-    //     {
-    //         var result = new Dictionary<string, object>();
-
-    //         var content = await _gitHubService.GetFileAsync(owner, repo, filePath);
-    //         result["content"] = content;
-
-    //         var imageUrl = await _gitHubService.GetImageUrlAsync(owner, repo, filePath);
-    //         if (!string.IsNullOrEmpty(imageUrl))
-    //         {
-    //             result["imageUrl"] = imageUrl;
-    //         }   
-
-    //         return Ok(result);
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         return BadRequest(new { error = ex.Message });
-    //     }
-    // }
 
 }
