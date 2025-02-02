@@ -9,13 +9,12 @@ namespace data_api.Controllers;
 public class FileController : ControllerBase
 {
     private readonly GitHubService _gitHubService;
-    private readonly ILogger<FileController> _logger; // Add a logger field
 
     // Inject ILogger and GitHubService in the constructor
-    public FileController(GitHubService gitHubService, ILogger<FileController> logger)
+    public FileController(GitHubService gitHubService)
     {
         _gitHubService = gitHubService;
-        _logger = logger;  // Initialize the logger
+        //_logger = logger;  // Initialize the logger
     }
 
     [HttpGet("")]
@@ -30,21 +29,21 @@ public class FileController : ControllerBase
         try
         {
             filePath = Uri.UnescapeDataString(filePath);
-            _logger.LogInformation("Requested file path: {FilePath}", filePath); // Log information
+            //_logger.LogInformation("Requested file path: {FilePath}", filePath); // Log information
             // Assuming GetFileAsync returns an object with file metadata, including the URL
             var imageResult = await _gitHubService.GetFileFromGitHub(filePath);
             
              if (imageResult is FileContentResult fileContentResult)
             {
-                _logger.LogInformation("Image found: {FilePath}", filePath);
+                //_logger.LogInformation("Image found: {FilePath}", filePath);
                 return fileContentResult; // Directly return the file content
             }
-            _logger.LogWarning("Image not found for path: {FilePath}", filePath); // Log a warning
+            //_logger.LogWarning("Image not found for path: {FilePath}", filePath); // Log a warning
             return NotFound(new { error = "Image not found" } );
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error while processing image request."); // Log an error with exception
+           // _logger.LogError(ex, "Error while processing image request."); // Log an error with exception
             return BadRequest(new { error = ex.Message } );
         }
     }
