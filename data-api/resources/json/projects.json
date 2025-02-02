@@ -18,8 +18,9 @@
     ],
     "thumbnail": {
       "filePath": "sk8-run/thumbnail.png",
-      "size": 0,
-      "fileType": null
+      "name": "thumbnail.png",
+      "size": 303660,
+      "fileType": "image/png"
     }
   },
   "Personal Website": {
@@ -46,8 +47,9 @@
     ],
     "thumbnail": {
       "filePath": "ui/website-thumbnail.png",
-      "size": 0,
-      "fileType": null
+      "name": "website-thumbnail.png",
+      "size": 583042,
+      "fileType": "image/png"
     }
   },
   "Kessler Syndrome": {
@@ -69,8 +71,9 @@
     ],
     "thumbnail": {
       "filePath": "kessler-syndrome/easy-mode.png",
-      "size": 0,
-      "fileType": null
+      "name": "easy-mode.png",
+      "size": 881368,
+      "fileType": "image/png"
     }
   },
   "Rogue Cat": {
@@ -93,8 +96,9 @@
     ],
     "thumbnail": {
       "filePath": "rogue-cat/Screen Shot 2023-06-17 at 11.36.30 AM.png",
-      "size": 0,
-      "fileType": null
+      "name": "Screen Shot 2023-06-17 at 11.36.30 AM.png",
+      "size": 3947589,
+      "fileType": "image/png"
     }
   }
 }

@@ -3,6 +3,7 @@ import { defineProps, ref } from 'vue';
 import placeholderImage from '@/assets/img/placeholder.png'
 import { onMounted } from 'vue';
 import { cachedState } from '@/composables/store.js';
+import { fetchImage } from '@/utils/fetchImage.js'
 import axios from 'axios';
 
 const props = defineProps({
@@ -24,18 +25,16 @@ const props = defineProps({
 
 const imageUrl = ref(cachedState.portraitUrl || placeholderImage);
 
-const fetchImage = async () => {
-    if (!cachedState.portraitUrl)
+const getImage = async () => {
+    if (!cachedState.portraitUrl && props.portrait)
     {
         console.log('fetching portrait')
         try {
-        const encodedThumbnail = encodeURIComponent(props.portrait);
-        // example request for image url: http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
-        const response = await axios.get(`http://localhost:5283/api/caitlinthaeler/portfolio_content/image/${encodedThumbnail}`,);
+        const response = await fetchImage(props.portrait);
         console.log(response)
         // Create a URL for the blob data
-        cachedState.portraitUrl = response.data.imageUrl;
-        imageUrl.value = cachedState.portraitUrl;
+        cachedState.portraitUrl = response;
+        imageUrl.value = response;
         console.log(imageUrl.value);
         } catch (error) {
             console.error("Error fetching image", error);
@@ -47,7 +46,7 @@ const fetchImage = async () => {
 }
 
 
-onMounted(fetchImage);
+onMounted(getImage);
 </script>
 
 <template>

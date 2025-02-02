@@ -9,8 +9,8 @@ using System.Reflection;
 
 public class JsonFileService
 {
-    private readonly string projectsFilePath = "wwwroot/data/projects.json";
-    private readonly string skillsFilePath = "wwwroot/data/skills.json";
+    private readonly string projectsFilePath = "resources/json/projects.json";
+    private readonly string skillsFilePath = "resources/json/skills.json";
 
 
     public async Task UpdateJsonFile<T>(string filePath, T data, string jsonKey)
@@ -58,6 +58,5 @@ public class JsonFileService
     {
         await UpdateJsonFile(skillsFilePath, skills, "name");
     }
-
 
 }

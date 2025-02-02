@@ -5,12 +5,12 @@ using System.Text.Json;
 namespace data_api.Controllers;
 
 [ApiController]
-[Route("api/{owner}/{repo}")]
+[Route("/api")]
 public class FileController : ControllerBase
 {
     private readonly GitHubService _gitHubService;
 
-    public FileController(GitHubService gitHubService)
+    public  FileController(GitHubService gitHubService)
     {
         _gitHubService = gitHubService;
     }
@@ -31,22 +31,39 @@ public class FileController : ControllerBase
     // }
 
     [HttpGet("image/{*filePath}")]
-    public async Task<IActionResult> GetImageUrl(string owner, string repo, string filePath)
+    public async Task<IActionResult> GetImageUrl(string filePath)
     {
         try
         {
             // Assuming GetFileAsync returns an object with file metadata, including the URL
-            var imageUrl = await _gitHubService.GetImageUrlAsync(owner, repo, filePath);
+            var imageResult = await _gitHubService.GetFileFromGitHub(filePath);
             
-            if (string.IsNullOrEmpty(imageUrl))
+             if (imageResult is FileContentResult fileContentResult)
             {
-                return NotFound(new { error = "Image URL not found" });
+                return fileContentResult; // Directly return the file content
+            }
+            return NotFound(new { error = "Image not found" } );
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message } );
+        }
+    }
+
+    [HttpGet("json/{*fileName}")]
+    public async Task<IActionResult> GetJsonFile(string fileName)
+    {
+        try
+        {
+            string filePath = Path.Combine("resources", "json", fileName);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound(new { error = "JSON file not found"} );
             }
 
-            var result = new { imageUrl };
-            //Console.WriteLine(result);
-            
-            return Ok(result);
+            var jsonContent = await System.IO.File.ReadAllTextAsync(filePath);
+            return Content(jsonContent, "application/json");
         }
         catch (Exception ex)
         {

@@ -9,6 +9,9 @@ public class Image
     [JsonPropertyName("filePath")]
     [BsonElement("filePath")]
     public string FilePath { get; set; } = null!;
+    [JsonPropertyName("name")]
+    [BsonElement("name")]
+    public string Name { get; set; } = null!;
     [JsonPropertyName("size")]
     [BsonElement("size")]
     public int Size { get; set; } = 0;

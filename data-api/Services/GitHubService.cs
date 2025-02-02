@@ -2,6 +2,7 @@ using Octokit;
 using System.Collections.Concurrent;
 using Microsoft.AspNetCore.Mvc;
 using data_api.Models;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace data_api.Services;
 
@@ -88,8 +89,9 @@ public class GitHubService
                 return new Image
                 {
                     FilePath = filePath,
+                    Name = content.Name,
                     Size = content.Size,
-                    FileType = "image",
+                    FileType = GetMimeType(content.Name),
                 };
             }
         }
@@ -133,7 +135,7 @@ public class GitHubService
 
                 _cache[cacheKey] = fileContent;
 
-                return new FileContentResult(fileContent, "image/png");
+                return new FileContentResult(fileContent, GetMimeType(filePath));
             }
             else
             {
@@ -147,5 +149,14 @@ public class GitHubService
         
 
     }
+
+    
+
+    public string GetMimeType(string fileName)
+    {
+        var provider = new FileExtensionContentTypeProvider();
+        return provider.TryGetContentType(fileName, out var mimeType) ? mimeType : "application/octet-stream";
+    }
+
 
 }

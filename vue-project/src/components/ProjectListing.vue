@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router'
 import { defineProps, ref, computed } from 'vue';
 import { onMounted } from 'vue';
 import placeholderImage from '@/assets/img/placeholder.png'
+import { fetchImage } from '@/utils/fetchImage.js';
 import axios from 'axios'
 
 const props = defineProps({
@@ -30,26 +31,22 @@ const truncatedDescription = computed(() => {
 
 const imageUrl = ref(placeholderImage);
 
-const fetchImage = async () => {
+const getImage = async () => {
     if (!props.project.thumbnail){
         console.warn('No thumbnail specified for project: ', props.title);
         return; // Use placeholder image
     }
     try {
-        console.log(props.project.thumbnail)
-        const encodedThumbnail = encodeURIComponent(props.project.thumbnail);
-        // example request for image url: http://localhost:5283/api/caitlinthaeler/portfolio_content/image/sk8-run/thumbnail.png
-        const response = await axios.get(`http://localhost:5283/api/caitlinthaeler/portfolio_content/image/${encodedThumbnail}`,);
-        console.log(response)
-        // Create a URL for the blob data
-        imageUrl.value = response.data.imageUrl;
-        console.log(imageUrl.value);
+        const response = await fetchImage(props.project.thumbnail.filePath);
+        if (response){
+            imageUrl.value = response;
+        }
     } catch (error) {
         console.error("Error fetching image", error);
     }
 }
 
-onMounted(fetchImage);
+onMounted(getImage);
 
 
 </script>

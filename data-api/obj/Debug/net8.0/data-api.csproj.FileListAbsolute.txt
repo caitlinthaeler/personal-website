@@ -48,3 +48,5 @@
 /Users/caitlin/Documents/GitHub/personal-website/data-api/obj/Debug/net8.0/data-api.genruntimeconfig.cache
 /Users/caitlin/Documents/GitHub/personal-website/data-api/obj/Debug/net8.0/ref/data-api.dll
 /Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net8.0/resources/json/projects.json
+/Users/caitlin/Documents/GitHub/personal-website/data-api/bin/Debug/net8.0/resources/json/skills.json

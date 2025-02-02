@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router'
 import ProjectListing from '@/components/ProjectListing.vue'
 import { reactive, ref, defineProps, onMounted } from 'vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import { fetchJson } from '@/utils/fetchJson.js'
 import axios from 'axios'
 
 defineProps({
@@ -38,19 +39,44 @@ const formatProjectDates = (projects) => {
   }));
 }
 
-
-onMounted(async () => {
+const fetchProjects = async () => {
     try {
-        const response = await axios.get('http://localhost:5283/api/projects-collection/');
-        state.projects = formatProjectDates(response.data);
-
-        console.log(state.projects);
-    } catch (error){
-        console.error('Error fetching projects', error);
-    } finally {
-        state.isLoading = false;
+        const projectsResponse = await fetchJson('projects.json');
+        console.log("projects response", projectsResponse);
+        if (projectsResponse){
+          const projectsData = Object.keys(projectsResponse).map(key => ({
+            ...projectsResponse[key]
+            //execute fetch function
+            
+          }));
+          state.projects = formatProjectDates(projectsData)
+        } else {
+          console.error('Couldn\'t find that file');
+        }
+        
+    } catch (error) {
+        console.error('Error loading JSON files:', error);
+    } finally{
+      state.isLoading = false;
     }
-});
+};
+
+onMounted(fetchProjects);
+
+
+// onMounted(async () => {
+//     try {
+//         const response = await axios.get('http://localhost:5283/api/projects-collection/');
+//         state.projects = formatProjectDates(response.data);
+
+//         console.log(state.projects);
+//     } catch (error){
+//         console.error('Error fetching projects', error);
+//     } finally {
+//         state.isLoading = false;
+//     }
+
+// });
 </script>
 
 <template>
