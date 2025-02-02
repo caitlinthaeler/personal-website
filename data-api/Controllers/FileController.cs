@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace data_api.Controllers;
 
 [ApiController]
-[Route("/api")]
+[Route("api")]
 public class FileController : ControllerBase
 {
     private readonly GitHubService _gitHubService;
@@ -16,6 +16,12 @@ public class FileController : ControllerBase
     {
         _gitHubService = gitHubService;
         _logger = logger;  // Initialize the logger
+    }
+
+    [HttpGet("")]
+    public IActionResult GetApiInfo()
+    {
+        return Ok(new { message = "API is working" });
     }
 
     [HttpGet("image/{*filePath}")]
