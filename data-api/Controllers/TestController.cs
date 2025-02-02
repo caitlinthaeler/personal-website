@@ -4,12 +4,13 @@ using data_api.Services;
 namespace data_api.Controllers;
 
 [ApiController]
-[Route("api")]
+[Route("test")]
 public class TestController : ControllerBase
 {
-    [HttpGet("test")]
+    [HttpGet]
     public IActionResult GetData()
     {
+        Console.WriteLine("Test controller accessed");
         return Ok(new { message = "this is a test response. api is working!" });
     }
 }
