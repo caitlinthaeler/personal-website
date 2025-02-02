@@ -7,8 +7,8 @@ export const fetchJson = async (jsonFile) => {
     }
     try {
         const encodedUrl = encodeURIComponent(jsonFile);
-        console.log(`http://localhost:5283/api/json/${jsonFile}`);
-        const response = await axios.get(`http://localhost:5283/api/json/${encodedUrl}`);
+        //http://localhost:5283/api/json/
+        const response = await axios.get(`/api/json/${encodedUrl}`);
         
         if (response.status === 200) {
             console.log(response.data);

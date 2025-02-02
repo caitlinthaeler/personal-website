@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    outDir: 'app'
+    outDir: 'dist'
   },
   plugins: [
     vue(),
@@ -20,7 +20,7 @@ export default defineConfig({
         target: 'http://localhost:5283',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        //rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

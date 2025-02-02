@@ -8,7 +8,8 @@ export const fetchImage = async (filePath) => {
     }
     try {
         const encodedImage = encodeURIComponent(filePath);
-        const response = await axios.get(`http://localhost:5283/api/image/${encodedImage}`,{
+        //http://localhost:5283/api/image/
+        const response = await axios.get(`/api/image/${encodedImage}`,{
             responseType: 'arraybuffer'
         });
 

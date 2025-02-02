@@ -5,16 +5,17 @@ DotEnv.Load();  // No need to pass filePath anymore
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
-var AllowedOrigins = config.GetSection("AllowedCorsOrigins").Get<string[]>();
-var AllowOriginsPolicyName = "AllowOrigins";
+var AllowedOrigins = new string[]
+{
+    "http://localhost:3000", // For local development
+    "https://caitlinthaeler.com" // For production
+};
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(
-        AllowOriginsPolicyName, 
-        policy =>
-        {
-            //policy.WithOrigins(AllowedOrigins)
-            policy.AllowAnyOrigin()
+    options.AddPolicy("AllowSpecificOrigins", policy =>
+    {
+        policy.WithOrigins(AllowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod();
         }
@@ -71,7 +72,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 //app.MapStaticAssets();
 
-app.UseCors(AllowOriginsPolicyName);
+// app.UseCors(AllowOriginsPolicyName);
+app.UseCors("AllowSpecificOrigins");
 
 // app.UseDefaultFiles();
 // app.UseStaticFiles();
@@ -81,6 +83,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapFallbackToFile("index.html");
+//app.MapFallbackToFile("index.html");
 
 app.Run();
