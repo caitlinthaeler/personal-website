@@ -17,6 +17,8 @@ console.log("project", props.project);
 
 const showFullDescription = ref(false);
 
+
+
 const toggleFullDescription = () => {
     showFullDescription.value = !showFullDescription.value;
 }
@@ -27,6 +29,10 @@ const truncatedDescription = computed(() => {
         description = description.substring(0, 30) + '...';
     }
     return description;
+});
+
+const hasGithub = computed(() => {
+    return props.project.githubLink != '';
 });
 
 const imageUrl = ref(placeholderImage);
@@ -84,22 +90,24 @@ onMounted(getImage);
             
 
             <div class="flex flex-row lg:flex-row">
-                <RouterLink 
-                    :to="'/projects/' + project.id"
+                <a
+                    :href="hasGithub ? project.githubLink : '#'"
+                    :target="hasGithub ? '_blank' : null"
+                    :rel="hasGithub ? 'noopener noreferrer' : null" 
                     class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >
                     Github
-            </RouterLink>
-            <RouterLink 
-                    :to="'/projects/' + project.id"
-                    class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >
-                    Live Demo
-            </RouterLink>
+                </a>
                 <RouterLink 
-                    :to="'/projects/' + project.title"
-                    class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"
-                >
-                    Read More
-            </RouterLink>
+                        :to="'/projects/' + project.id"
+                        class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >
+                        Live Demo
+                </RouterLink>
+                    <RouterLink 
+                        :to="'/projects/' + project.title"
+                        class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"
+                    >
+                        Read More
+                </RouterLink>
             </div>
             
         </div>
