@@ -11,6 +11,7 @@ import ProjectView from '@/views/ProjectView.vue'
 import ExperienceView from '@/views/ExperienceView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ResumeView from '@/views/ResumeView.vue'
+import RogueCatView from '@/views/RogueCatView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,29 +22,14 @@ const router = createRouter({
             component: HomeView,
         },
         {
-            path: '/jobs',
-            name: 'jobs',
-            component: JobsView,
-        },
-        {
-            path: '/jobs/:id',
-            name: 'job',
-            component: JobView,
-        },
-        {
-            path: '/jobs/add',
-            name: 'add-job',
-            component: AddJobView,
-        },
-        {
-            path: '/jobs/edit/:id',
-            name: 'edit-job',
-            component: EditJobView
-        },
-        {
             path: '/projects',
             name: 'projects',
             component: ProjectsView
+        },
+        {
+            path: '/projects/67936e6cfd00290dbff739d8',
+            name: 'rogue-cat',
+            component: RogueCatView
         },
         {
             path: '/projects/:id',
