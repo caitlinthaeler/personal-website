@@ -63,13 +63,12 @@ onMounted(fetchProjects);
             </div> -->
 
                 <Carousel 
-                    :value="state.projects" 
+                    :value="state.projects.concat(state.projects).concat(state.projects)" 
                     :numVisible="3" 
                     :numScroll="1"
                     :autoplay="true"
                     :circular="false"
                     :autoplayInterval="3000"
-                    :dots="true"
                     class="relative z-10 w-full h-full"
                     >
                     <template #item="slotProps">
