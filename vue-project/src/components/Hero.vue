@@ -57,6 +57,9 @@ onMounted(getImage);
             class="max-w-7xl mx-auto flex flex-col gap-5"
         >
             <div class="text-center">
+            <p class="text-center text-plum">
+                *colors looks different with extensions like dark reader. I will work on this eventually.
+            </p>
             <h1
                 class="text-7xl font-extrabold text-grape-light"
             >
