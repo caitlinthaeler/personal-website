@@ -90,6 +90,11 @@ onMounted(fetchProjects);
                     >View AllProjects</RouterLink>
             </div>
         </div>
+        <div>
+            <p class="text-center text-plum">
+                *website looks different with dark mode and extensions like dark reader. I will work on this eventually
+            </p>
+        </div>
         
     </section>
 </template>
