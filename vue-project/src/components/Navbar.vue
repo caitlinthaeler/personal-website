@@ -2,7 +2,7 @@
 import { RouterLink, useRoute } from 'vue-router'
 import logo from '@/assets/img/bond-unclicked.png'
 
-const activeTextColor = 'text-lemon-dark'; //on the page
+const activeTextColor = 'text-lemon-cdark'; //on the page
 const hoverTextColor = 'hover:text-plum'; //hovering
 const inactiveTextColor = 'text-lemon' //normal
 

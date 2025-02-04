@@ -94,7 +94,7 @@ onMounted(getImage);
                     :href="hasGithub ? project.githubLink : '#'"
                     :target="hasGithub ? '_blank' : null"
                     :rel="hasGithub ? 'noopener noreferrer' : null" 
-                    class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-dark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >
+                    class="h-[36px] hover:underline hover:underline-offset-8 hover:text-lemon-cdark px-4 py-2 text-center text-md transition-transform duration-300 ease-in-out hover:scale-110"                >
                     Github
                 </a>
                 <RouterLink 
