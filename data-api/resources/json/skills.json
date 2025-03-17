@@ -41,5 +41,13 @@
       "Code Editor",
       "Integrated Development Environment"
     ]
+  },
+  "3D": {
+    "Id": "67d808fc08720d96e82c07b0",
+    "name": "3D",
+    "description": "",
+    "categories": [
+      ""
+    ]
   }
 }

@@ -100,5 +100,30 @@
       "size": 3947589,
       "fileType": "image/png"
     }
+  },
+  "Stirred From Stone": {
+    "id": "67d8083c08720d96e82c07af",
+    "title": "Stirred From Stone",
+    "description": "3D thriller adventure game developed with Unity3D and Visual Studio Code. The game is set in St Machar Cathedral in Aberdeen, Scotland",
+    "startDate": "2019-09-01T00:00:00Z",
+    "endDate": null,
+    "skills": [
+      "C#",
+      "Unity",
+      "Visual Studio Code",
+      "3D"
+    ],
+    "githubLink": "https://github.com/caitlinthaeler/RCR-game-jam-2025.git",
+    "hasLiveDemo": false,
+    "media": [
+      "0",
+      "1"
+    ],
+    "thumbnail": {
+      "filePath": "stirred-from-stone/stirred-from-stone-img-2",
+      "name": null,
+      "size": 0,
+      "fileType": null
+    }
   }
 }
