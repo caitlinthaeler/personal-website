@@ -105,7 +105,7 @@
     "id": "67d8083c08720d96e82c07af",
     "title": "Stirred From Stone",
     "description": "3D thriller adventure game developed with Unity3D and Visual Studio Code. The game is set in St Machar Cathedral in Aberdeen, Scotland",
-    "startDate": "2019-09-01T00:00:00Z",
+    "startDate": "2025-03-26T00:00:00Z",
     "endDate": null,
     "skills": [
       "C#",
@@ -120,10 +120,38 @@
       "1"
     ],
     "thumbnail": {
-      "filePath": "stirred-from-stone/stirred-from-stone-img-2",
-      "name": null,
-      "size": 0,
-      "fileType": null
+      "filePath": "stirred-from-stone/stirred-from-stone-img-2.png",
+      "name": "stirred-from-stone-img-2.png",
+      "size": 1658243,
+      "fileType": "image/png"
+    }
+  },
+  "Subsea Data Visualizer for Elementz": {
+    "id": "67d83401779ebad474c0d7f2",
+    "title": "Subsea Data Visualizer for Elementz",
+    "description": "Basic website using Globe.Gl to plot subsea assets, vessels, pipelines, and points of interest on a 3D model of earth. Toggleable filters allow custom views.",
+    "startDate": "2025-02-22T00:00:00Z",
+    "endDate": "2025-02-23T00:00:00Z",
+    "skills": [
+      "HTML",
+      "JavaScript",
+      "CSS",
+      "Visual Studio Code",
+      "3D",
+      "Globe.Gl",
+      "API"
+    ],
+    "githubLink": "https://github.com/Ben-Greenidge/RGU_Hack.git",
+    "hasLiveDemo": false,
+    "media": [
+      "6",
+      "7"
+    ],
+    "thumbnail": {
+      "filePath": "subsea-data-visualiser/subsea-data-visualiser-img-1.png",
+      "name": "subsea-data-visualiser-img-1.png",
+      "size": 2349856,
+      "fileType": "image/png"
     }
   }
 }
