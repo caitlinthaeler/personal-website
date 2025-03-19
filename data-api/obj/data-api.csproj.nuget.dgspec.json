@@ -60,6 +60,10 @@
               "target": "Package",
               "version": "[6.6.2, )"
             },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.6.1, )"
+            },
             "dotenv.net": {
               "target": "Package",
               "version": "[3.2.1, )"
