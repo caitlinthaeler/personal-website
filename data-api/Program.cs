@@ -1,6 +1,8 @@
 using data_api.Services;
+using data_api.Models;
 using data_api.Utils;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
 
 DotEnv.Load();  // No need to pass filePath anymore
 
@@ -24,6 +26,35 @@ builder.Services.AddCors(options =>
     );
 });
 
+builder.Services.Configure<JwtOptions>(options =>
+{
+    options.Secret = Environment.GetEnvironmentVariable("JWT_KEY");
+    options.Issuer = Environment.GetEnvironmentVariable("JWT_ISS");
+    options.Audience = Environment.GetEnvironmentVariable("JWT_AUD");
+    string expTimeString = Environment.GetEnvironmentVariable("JWT_EXP_TIME_MIN");
+    if (!int.TryParse(expTimeString, out int expTime))
+    {
+        expTime = 60;
+    }
+    options.ExpirationTimeInMinutes = expTime;
+});
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    AddJwtBearer(options =>
+    {
+        
+    }).
+    options.DefaultAuthenticationScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+
+});
+
+builder.Services.Configure<AdminDetails>(data =>
+{
+    data.username = Environment.GetEnvironmentVariable("ADMIN_USER");
+    data.password = Environment.GetEnvironmentVariable("ADMIN_PASSWORD");
+});
 
 
 builder.Services.AddSingleton(serviceProvider =>
@@ -59,6 +90,8 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1"
     });
 });
+
+
 
 var app = builder.Build();
 await app.Services.GetRequiredService<UpdateService>().UpdateDataAsync();

@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+using data_api.Models;
+using System.Security.Cryptography;
+using Microsoft.Extensions.Options;
 
 namespace data_api.Controllers;
 
@@ -13,29 +13,31 @@ namespace data_api.Controllers;
 [ApiController]
 public class AuthenticationController : ControllerBase
 {
-    private readonly string _adminUsername;
-    private readonly string _adminPassword;
+    private readonly string _username;
+    private readonly string _password;
+    private readonly JwtOptions _jwtOptions;
 
-    public AuthenticationController(string adminUsername, string adminPassword)
+    public AuthenticationController(IOptions<JwtOptions> jwtOptions, string username, string password)
     {
-        _adminUsername = adminUsername;
-        _adminPassword = adminPassword;
+        _username = username;
+        _password = password;
+        _jwtOptions = jwtOptions.Value;
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        if (request.Username != _adminUsername)
+        if (request.Username != _username)
         {
             return Unauthorized ( new { message = "invalid username"});
         }
-        if (request.Password != _adminPassword)
+        if (request.Password != _password)
         {
             return Unauthorized ( new { message = "invalid password"});
         }
 
-        string token = GenerateJwtToken(request.Username);
-        Response.Cookies.Append("AuthToken", token, new CookieOptions
+        (string tokenHandler, DateTime expiresAtUtc) = GenerateJwtToken();
+        Response.Cookies.Append("AuthToken", tokenHandler, new CookieOptions
         {
             HttpOnly = true,
             Secure = true,
@@ -44,27 +46,43 @@ public class AuthenticationController : ControllerBase
         return Ok(new { message = "Login successful"});
     }
 
-    private string GenerateJwtToken(string username)
+    private (string tokenHandler, DateTime expiresAtUtc) GenerateJwtToken()
     {
-        byte[] key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY"));
+        var signingKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(_jwtOptions.Secret));
 
-        var tokenHandler = new JwtSecurityTokenHandler();
+        var credentials = new SigningCredentials(
+            signingKey,
+            SecurityAlgorithms.HmacSha256);
 
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, username)}),
-            Issuer = Environment.GetEnvironmentVariable("JWT_ISS"),
-            Audience = Environment.GetEnvironmentVariable("JWT_AUD"),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        var claims = new[] {new Claim(JwtRegisteredClaimNames.Sub, _username)};
+
+        var expires = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationTimeInMinutes);
+
+        var token = new JwtSecurityToken(
+            issuer: _jwtOptions.Issuer,
+            audience: _jwtOptions.Audience,
+            claims: claims,
+            expires: expires,
+            signingCredentials: credentials);
+
+        
+        var tokenHandler = new JwtSecurityTokenHandler().WriteToken(token);
+        return (tokenHandler, expires);
+    }
+
+    public string GenerateRefreshToken()
+    {
+        var randomNumber = new byte[64];
+        using var rng = RandomNumberGenerator.Create();
+        rng.GetBytes(randomNumber);
+        return Convert.ToBase64String(randomNumber);
     }
 
     [HttpPost("logout")]
     public IActionResult Logout()
     {
-        Response.Cookies.Delete("jwt");
+        Response.Cookies.Delete("AuthToken");
         return Ok(new { message = "Logged out" });
     }
 
