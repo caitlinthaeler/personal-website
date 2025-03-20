@@ -4,8 +4,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using data_api.Models;
+using data_api.Exceptions;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity;
 
 namespace data_api.Controllers;
 
@@ -13,9 +15,15 @@ namespace data_api.Controllers;
 [ApiController]
 public class AuthenticationController : ControllerBase
 {
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly JwtOptions _jwtOptions;
     private readonly string _username;
     private readonly string _password;
-    private readonly JwtOptions _jwtOptions;
+    private string _jwtToken;
+    private DateTime _expiresAtUtc;
+    private string _refreshToken;
+    private DateTime _refreshTokenExpiresAtUtc;
+    
 
     public AuthenticationController(IOptions<JwtOptions> jwtOptions, string username, string password)
     {
@@ -29,21 +37,41 @@ public class AuthenticationController : ControllerBase
     {
         if (request.Username != _username)
         {
-            return Unauthorized ( new { message = "invalid username"});
+            throw new LoginFailedException("invalid username");
         }
         if (request.Password != _password)
         {
-            return Unauthorized ( new { message = "invalid password"});
+            throw new LoginFailedException("invalid password");
         }
 
-        (string tokenHandler, DateTime expiresAtUtc) = GenerateJwtToken();
-        Response.Cookies.Append("AuthToken", tokenHandler, new CookieOptions
-        {
-            HttpOnly = true,
-            Secure = true,
-            SameSite = SameSiteMode.Strict,
-        });
+        (string jwtToken, DateTime expiresAtUtc) = GenerateJwtToken();
+        _jwtToken = jwtToken;
+        _expiresAtUtc = expiresAtUtc;
+        _refreshToken = GenerateRefreshToken();
+        _refreshTokenExpiresAtUtc = DateTime.UtcNow.AddDays(7);
+
+        
+        
+        WriteAuthTokenAsHttpOnlyCookie("ACCESS_TOKEN", jwtToken, expiresAtUtc);
+        WriteAuthTokenAsHttpOnlyCookie("REFRESH_TOKEN", _refreshToken, _refreshTokenExpiresAtUtc);
+        
         return Ok(new { message = "Login successful"});
+    }
+
+    [HttpPost("refresh")]
+    public async Task<IActionResult> RefreshTokenAsync(string? refreshToken)
+    {
+        if (string.IsNullOrEmpty(refreshToken))
+        {
+            throw new RefreshTokenException("Refresh token is missing");
+        }
+
+        if (_refreshTokenExpiresAtUtc < DateTime.UtcNow)
+        {
+            throw new RefreshTokenException("Refresh token is expired");
+        }
+
+        return Ok(new {message = "refresh successful"});
     }
 
     private (string tokenHandler, DateTime expiresAtUtc) GenerateJwtToken()
@@ -85,6 +113,19 @@ public class AuthenticationController : ControllerBase
         Response.Cookies.Delete("AuthToken");
         return Ok(new { message = "Logged out" });
     }
+
+    public void WriteAuthTokenAsHttpOnlyCookie(string cookieName, string token, DateTime expiration)
+    {
+        _httpContextAccessor.HttpContext.Response.Cookies.Append(cookieName, token, new CookieOptions
+        {
+            HttpOnly = true,
+            Expires = expiration,
+            IsEssential = true,
+            Secure = true,
+            SameSite = SameSiteMode.Strict,
+        });
+    }
+
 
     
 }

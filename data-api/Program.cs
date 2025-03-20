@@ -1,8 +1,12 @@
 using data_api.Services;
 using data_api.Models;
+using data_api.Exceptions;
 using data_api.Utils;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
+using System.Text;
 
 DotEnv.Load();  // No need to pass filePath anymore
 
@@ -39,23 +43,38 @@ builder.Services.Configure<JwtOptions>(options =>
     options.ExpirationTimeInMinutes = expTime;
 });
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    AddJwtBearer(options =>
+builder.Services
+    .AddAuthentication(options =>
     {
-        
-    }).
-    options.DefaultAuthenticationScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = Environment.GetEnvironmentVariable("JWT_ISS"),
+            ValidAudience = Environment.GetEnvironmentVariable("JWT_AUD"),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")))
+        };
 
-});
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["ACCESS_TOKEN"];
+                return Task.CompletedTask;
+            }
+        };
+    });
 
-builder.Services.Configure<AdminDetails>(data =>
-{
-    data.username = Environment.GetEnvironmentVariable("ADMIN_USER");
-    data.password = Environment.GetEnvironmentVariable("ADMIN_PASSWORD");
-});
-
+builder.Services.AddAuthorization();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddSingleton(serviceProvider =>
 {
@@ -108,6 +127,8 @@ app.UseCors("AllowSpecificOrigins");
 
 app.UseRouting();
 
+app.UseExceptionHandler(_ => { });
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
