@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sNU5W2bej179rZKqnrEIbwG258yBVqTtBlwWtnAqSOk=",
+  "Hash": "fTA8V5UOZulm7c51QLpEo8jlbwllo6GPaGy0yugySGM=",
   "Source": "data-api",
   "BasePath": "_content/data-api",
   "Mode": "Default",
@@ -15,6 +15,5 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }

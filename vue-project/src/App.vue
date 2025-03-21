@@ -1,14 +1,14 @@
 <script setup>
-import Navbar from '@/components/Navbar.vue'
-import { RouterView } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import DefaultLayout from './layouts/DefaultLayout.vue';
+import AdminLayout from './layouts/AdminLayout.vue';
+import MinimalLayout from './layouts/MinimalLayout.vue';
+
+const route = useRoute();
+const layout = computed(() => route.meta.layout)
 </script>
 
 <template>
-  <div class="font-handwriting h-screen bg-grape">
-    <Navbar />
-    <div>
-      <RouterView />
-    </div>
-    
-  </div>
+      <component :is="layout" />
 </template>

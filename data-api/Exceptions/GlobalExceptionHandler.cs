@@ -14,23 +14,29 @@ public class GlobalExceptionHandler : IExceptionHandler
 
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        var (statusCode, message) = GetExceptionDetails(exception);
+        var (statusCode, message, isValid) = GetExceptionDetails(exception);
 
         _logger.LogError(exception, exception.Message);
 
         httpContext.Response.StatusCode = (int)statusCode;
-        await httpContext.Response.WriteAsJsonAsync(message, cancellationToken);
+        var response = new
+        {
+            Message = message,
+            IsValid = isValid
+        };
+        await httpContext.Response.WriteAsJsonAsync(response, cancellationToken);
         
-        return true;
+        return isValid;
     }
 
-    private (HttpStatusCode statusCode, string message) GetExceptionDetails(Exception exception)
+    private (HttpStatusCode statusCode, string message, bool isValid) GetExceptionDetails(Exception exception)
     {
         return exception switch
         {
-            LoginFailedException => (HttpStatusCode.Unauthorized, exception.Message),
-            RefreshTokenException => (HttpStatusCode.BadRequest, exception.Message),
-            _=> (HttpStatusCode.InternalServerError, $"An unexpected error occured: {exception.Message}")
+            LoginFailedException => (HttpStatusCode.Unauthorized, exception.Message, false),
+            RefreshTokenException => (HttpStatusCode.BadRequest, exception.Message, false),
+            TokenInvalidException => (HttpStatusCode.Unauthorized, exception.Message, false),
+            _=> (HttpStatusCode.InternalServerError, $"An unexpected error occured: {exception.Message}", false)
         };
     }
 }

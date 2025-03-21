@@ -2,15 +2,19 @@ using data_api.Services;
 using data_api.Models;
 using data_api.Exceptions;
 using data_api.Utils;
+using data_api.Controllers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
+using System.Net;
+using System.Security.Authentication;
 
 DotEnv.Load();  // No need to pass filePath anymore
 
 var builder = WebApplication.CreateBuilder(args);
+
 var config = builder.Configuration;
 var AllowedOrigins = new string[]
 {
@@ -19,11 +23,19 @@ var AllowedOrigins = new string[]
     "https://caitlinthaeler.com" // For production
 };
 
+// builder.Services.Configure<CookiePolicyOptions>(options =>
+// {
+//     options.Secure = CookieSecurePolicy.Always;
+//     options.MinimumSameSitePolicy = SameSiteMode.None;
+// });
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", policy =>
     {
         policy.WithOrigins(AllowedOrigins)
+            .AllowCredentials()
             .AllowAnyHeader()
             .AllowAnyMethod();
         }
@@ -42,6 +54,10 @@ builder.Services.Configure<JwtOptions>(options =>
     }
     options.ExpirationTimeInMinutes = expTime;
 });
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<AuthenticationController>();
 
 builder.Services
     .AddAuthentication(options =>
@@ -126,7 +142,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowSpecificOrigins");
 
 app.UseRouting();
-
+app.UseHttpsRedirection();
 app.UseExceptionHandler(_ => { });
 app.UseAuthentication();
 app.UseAuthorization();
