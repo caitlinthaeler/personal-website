@@ -45,7 +45,7 @@ const isActiveLink = (routePath) => {
           >
             <!-- Logo -->
             <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
-              <img class="h-10 w-auto" :src="logo" alt="Vue Jobs" />
+              <img class="h-10 w-auto" :src="logo" alt="img" />
               <span class="hidden md:block text-lemon text-md font-bold ml-2"
                 >Caitlin Thaeler</span
               >

@@ -23,7 +23,7 @@ const state = reactive({
 const fetchProjects = async () => {
     try {
         const response = await fetchJson('projects.json');
-        console.log("projects response", response);
+        //console.log("projects response", response);
         if (response){
             const projectsData = await Promise.all(Object.keys(response).map(async (key) => {
                 const project = response[key];

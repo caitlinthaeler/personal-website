@@ -53,7 +53,7 @@ async function OnLogin(){
 
             <h1 class="text-grape-light text-7xl mb-10">Admin Page</h1>
             <!-- content -->
-            <div class="bg-lemon rounded-lg shadow md:p-0 sm:max-w-md xl:p-0">
+            <div class="bg-lemon rounded-lg shadow sm-w-[300px] sm-h-[350px] md-w-[400px] md-h-[450px] lg-w-[400px] lg-h-[450px] justify-between">
                 <div class="p-6 space-y-6">
                     <h1 class="text-4xl text-center font-bold leading-tight tracking-tight text-grape">
                         Sign in to your account
