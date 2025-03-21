@@ -36,7 +36,6 @@ const fetchProjects = async () => {
                 };
             }));
             state.projects = projectsData;
-            console.log(state.imageUrls);
         } else {
           console.error('Couldn\'t find that file');
         }

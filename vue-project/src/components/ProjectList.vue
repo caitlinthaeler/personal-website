@@ -42,7 +42,6 @@ const formatProjectDates = (projects) => {
 const fetchProjects = async () => {
     try {
         const projectsResponse = await fetchJson('projects.json');
-        console.log("projects response", projectsResponse);
         if (projectsResponse){
           const projectsData = Object.keys(projectsResponse).map(key => ({
             ...projectsResponse[key]

@@ -28,14 +28,11 @@ const imageUrl = ref(cachedState.portraitUrl || placeholderImage);
 const getImage = async () => {
     if (!cachedState.portraitUrl && props.portrait)
     {
-        console.log('fetching portrait')
         try {
         const response = await fetchImage(props.portrait);
-        console.log(response)
         // Create a URL for the blob data
         cachedState.portraitUrl = response;
         imageUrl.value = response;
-        console.log(imageUrl.value);
         } catch (error) {
             console.error("Error fetching image", error);
         }

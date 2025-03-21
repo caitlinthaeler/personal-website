@@ -13,8 +13,6 @@ const props = defineProps({
     }
 });
 
-console.log("project", props.project);
-
 const showFullDescription = ref(false);
 
 
@@ -38,7 +36,6 @@ const hasGithub = computed(() => {
 const imageUrl = ref(placeholderImage);
 
 const getImage = async () => {
-    console.log("project listing data: ", props);
     if (!props.project.thumbnail){
         console.warn('No thumbnail specified for project: ', props.title);
         return; // Use placeholder image
