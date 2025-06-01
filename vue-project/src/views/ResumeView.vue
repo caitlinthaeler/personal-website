@@ -17,7 +17,7 @@ const props = defineProps({
     },
     resumeUrl: {
         type: String,
-        default: '@/assets/img/caitlin-thaeler-cv-2025-5.pdf'
+        default: '/files/caitlin-thaeler-cv-2025-5.pdf'
     }
 });
 
